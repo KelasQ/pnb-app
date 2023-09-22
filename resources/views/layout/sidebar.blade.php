@@ -73,7 +73,7 @@
             </li>
             <li class="sidebar-item">
                 <a data-bs-target="#masterDataTindakan" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Master Data
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Master Data
                         Tindakan</span>
                 </a>
                 <ul id="masterDataTindakan" class="sidebar-dropdown list-unstyled collapse "
@@ -88,7 +88,7 @@
             </li>
             <li class="sidebar-item">
                 <a data-bs-target="#masterDataLaporan" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Master Data
+                    <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Master Data
                         Laporan</span>
                 </a>
                 <ul id="masterDataLaporan" class="sidebar-dropdown list-unstyled collapse "
