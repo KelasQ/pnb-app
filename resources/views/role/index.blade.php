@@ -25,6 +25,27 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($roles as $i => $role)
+                                        <tr>
+                                            <td>{{ $i + 1 }}</td>
+                                            <td>{{ $role->role }}</td>
+                                            <td>
+                                                <form action="{{ url('role/' . $role->id) }}" method="post"
+                                                    style="display: inline;">
+                                                    <a href="{{ url('role/' . $role->id . '/edit') }}"
+                                                        class="btn btn-warning btn-sm" title="Edit Data"><i
+                                                            class="align-middle" data-feather="edit"></i></a>
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button type="submit" title="Hapus Data"
+                                                        class="btn btn-danger btn-sm"><i class="align-middle"
+                                                            data-feather="trash-2"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

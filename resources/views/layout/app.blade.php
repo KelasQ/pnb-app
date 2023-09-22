@@ -19,9 +19,9 @@
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
 
-    {{-- @if (session()->hash('success'))
-        <div class="pesanSuccess" data-swal=""></div>
-    @endif --}}
+    @if (session()->has('success'))
+        <div class="pesanSuccess" data-swal="{{ session()->get('success') }}"></div>
+    @endif
 
     <div class="wrapper">
 
@@ -61,6 +61,16 @@
     <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ url('js/app.js') }}"></script>
     <script src="{{ url('js/script.js') }}"></script>
+    <script>
+        const pesanSuccess = $('.pesanSuccess').data('swal');
+        if (pesanSuccess) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil...',
+                text: pesanSuccess
+            });
+        }
+    </script>
 </body>
 
 </html>
