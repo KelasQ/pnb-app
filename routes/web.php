@@ -7,7 +7,10 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 Route::get(RouteServiceProvider::HOME, fn () => view('dashboard'));
+Route::get('login', function () {
+    return view('login');
+});
 
 Route::resource('role', RoleController::class);
-Route::resource('users', UserController::class);
-Route::resource('karyawan', KaryawanController::class);
+// Route::resource('user', UserController::class);
+// Route::resource('karyawan', KaryawanController::class);

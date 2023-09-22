@@ -12,10 +12,14 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::when($request->name, function($query, $name){
-            return $query->where('name', 'like', "%{$name}%");
-        })->orderBy('id','DESC')->paginate(20);
-        return view('role.index', compact('roles'));
+        // $roles = Role::when($request->name, function($query, $name){
+        //     return $query->where('name', 'like', "%{$name}%");
+        // })->orderBy('id','DESC')->paginate(20);
+        $roles = Role::orderBy('id', 'DESC')->get();
+        return view('role.index', [
+            'title'     =>  'Data Role',
+            'roles'     =>  compact('roles')
+        ]);
     }
 
     /**
@@ -23,7 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('role.create');
+        return view('role.create', ['title' => 'Tambah Data Role']);
     }
 
     /**
@@ -31,15 +35,9 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama_field' => 'required'
-        ]);
-
-        Role::create($validated);
-
-        return redirect(route('role.index'))
-            ->with('status' ,'success')
-            ->with('message', 'Data created');
+        $request->validate(['role'  =>  ['required']]);
+        Role::create($request->all());
+        return redirect(route('role'));
     }
 
     /**
@@ -70,7 +68,7 @@ class RoleController extends Controller
         $role->update($validated);
 
         return redirect(route('role.index'))
-            ->with('status' ,'success')
+            ->with('status', 'success')
             ->with('message', 'Data updated');
     }
 
@@ -79,9 +77,9 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role->delete();        
+        $role->delete();
         return redirect(route('role.index'))
-            ->with('status' ,'success')
+            ->with('status', 'success')
             ->with('message', 'Data deleted');
     }
 }
