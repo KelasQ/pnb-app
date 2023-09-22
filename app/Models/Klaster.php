@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Klaster extends Model
 {
     use HasFactory;
+    protected $table = 'klaster';
+    protected $fillable = ['klaster'];
 }

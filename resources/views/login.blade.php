@@ -28,15 +28,13 @@
                 <div class="row h-100">
                     <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
                         <div class="d-table-cell align-middle">
-
-                            <div class="text-center mt-4">
-                                <h1 class="h2">Kementrian Sosial <br> Sentra "Bahagia" Di Medan</h1>
-                                <p class="lead">
-                                    JL. Williem Iskandar No. 377 Medan 20222 <br> Telp. 061 - 6613305
-                                </p>
-                            </div>
-
-                            <div class="card">
+                            <div class="card shadow-lg">
+                                <div class="text-center mt-4">
+                                    <h1 class="h2">Kementrian Sosial <br> Sentra "Bahagia" Di Medan</h1>
+                                    <p class="lead">
+                                        JL. Williem Iskandar No. 377 Medan 20222 <br> Telp. 061 - 6613305
+                                    </p>
+                                </div>
                                 <div class="card-body">
                                     <div class="m-sm-3">
                                         <form action="{{ url('login') }}" method="post">
@@ -52,15 +50,15 @@
                                                     name="password" placeholder="Masukan Password Anda" />
                                             </div>
                                             <div class="d-grid gap-2 mt-3">
-                                                <a href="dashboard-default.html"
-                                                    class="btn btn-lg btn-primary">Login</a>
+                                                <a href="dashboard-default.html" class="btn btn-lg btn-primary"><i
+                                                        class="align-middle" data-feather="log-in"></i> Login</a>
                                             </div>
                                         </form>
                                     </div>
+                                    <div class="text-center mb-3">
+                                        PNB Web App | @ {{ date('Y') }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="text-center mb-3">
-                                PNB Web App | @ {{ date('Y') }}
                             </div>
                         </div>
                     </div>

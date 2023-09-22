@@ -4,20 +4,23 @@
             <span class="align-middle me-3">PNB Web App</span>
         </a>
         <ul class="sidebar-nav">
-            <li class="sidebar-item">
+            <li class="sidebar-item{{ Request::is('/') ? ' active' : '' }}">
                 <a class="sidebar-link" href="{{ url('/') }}">
                     <i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a data-bs-target="#masterDataUser" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                <a data-bs-target="#masterDataUser" data-bs-toggle="collapse" class="sidebar-link">
                     <i class="align-middle" data-feather="users"></i> <span class="align-middle">Master Data
                         Users</span>
                 </a>
-                <ul id="masterDataUser" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('role') }}">Roles User</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('user') }}">Data Users</a></li>
-                    <li class="sidebar-item"><a class="sidebar-link" href="{{ url('karyawan') }}">Data Karyawan</a></li>
+                <ul id="masterDataUser" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item{{ Request::is('role') ? ' active' : '' }}"><a class="sidebar-link"
+                            href="{{ url('role') }}">Roles User</a></li>
+                    <li class="sidebar-item{{ Request::is('user') ? ' active' : '' }}"><a class="sidebar-link"
+                            href="{{ url('user') }}">Data Users</a></li>
+                    <li class="sidebar-item{{ Request::is('karyawan') ? ' active' : '' }}"><a class="sidebar-link"
+                            href="{{ url('karyawan') }}">Data Karyawan</a></li>
                 </ul>
             </li>
             <li class="sidebar-item">
