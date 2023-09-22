@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('ska', function (Blueprint $table) {
             $table->id();
+            $table->string('jenis_ska', 200);
+            $table->text('deskripsi');
+            $table->text('dokumentasi');
             $table->timestamps();
         });
     }

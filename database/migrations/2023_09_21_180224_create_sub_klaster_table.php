@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('sub_klaster', function (Blueprint $table) {
             $table->id();
+            $table->integer('klaster_id');
+            $table->string('sub_klaster', 200);
             $table->timestamps();
         });
     }

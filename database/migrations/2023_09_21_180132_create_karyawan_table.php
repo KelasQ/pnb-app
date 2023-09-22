@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
+            $table->string('nik', 30);
+            $table->string('nama', 100);
+            $table->string('email', 100);
+            $table->string('telp', 15);
+            $table->string('jabatan', 100);
+            $table->string('foto', 100);
+            $table->string('alamat', 255);
             $table->timestamps();
         });
     }

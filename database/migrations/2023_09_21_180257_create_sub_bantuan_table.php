@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('sub_bantuan', function (Blueprint $table) {
             $table->id();
+            $table->integer('bantuan_id');
+            $table->string('sub_bantuan', 100);
             $table->timestamps();
         });
     }

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('tindakan_layanan', function (Blueprint $table) {
             $table->id();
+            $table->integer('peserta_id');
+            $table->string('jenis_tindakan', 100);
+            $table->string('sub_tindakan', 100);
+            $table->string('keterangan', 255);
+            $table->text('desktipsi_masalah');
+            $table->text('desktipsi_hasil');
+            $table->text('rencana_tindak_lanjut');
             $table->timestamps();
         });
     }
