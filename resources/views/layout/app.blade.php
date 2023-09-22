@@ -18,6 +18,11 @@
 </head>
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+
+    {{-- @if (session()->hash('success'))
+        <div class="pesanSuccess" data-swal=""></div>
+    @endif --}}
+
     <div class="wrapper">
 
         @include('layout.sidebar')

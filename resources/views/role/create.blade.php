@@ -23,7 +23,7 @@
                                         <label for="role">Nama Role</label>
                                         <input type="text" name="role" id="role"
                                             class="form-control mt-1 @error('role') is-invalid @enderror"
-                                            placeholder="Nama Role">
+                                            placeholder="Nama Role" value="{{ old('role') }}">
                                         @error('role')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
