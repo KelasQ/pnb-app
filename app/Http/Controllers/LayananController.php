@@ -2,63 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Layanan;
 use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('layanan.index', [
+            'title'     =>  'Data Layanan',
+            'layanan'     =>  Layanan::orderBy('id', 'DESC')->get()
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('layanan.create', [
+            'layanan'   =>  new Layanan,
+            'submit'    => 'Simpan',
+            'title'     => 'Tambah Data Layanan'
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Layanan::create($request->validate(['layanan'  =>  'required']));
+        return redirect(url('layanan'))->with('success', 'Data Layanan Berhasil Disimpan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Request $request, Layanan $layanan)
     {
-        //
+        return view('layanan.edit', [
+            'submit'    =>  'Update',
+            'layanan'   =>  $layanan
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, Layanan $layanan)
     {
-        //
+        $layanan->update($request->validate(['layanan'  =>  'required']));
+        return redirect(url('layanan'))->with('success', 'Data Layanan Berhasil Diupdate.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Layanan $layanan)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $layanan->delete();
+        return redirect(url('layanan'))->with('success', 'Data Layanan Berhasil Dihapus.');
     }
 }

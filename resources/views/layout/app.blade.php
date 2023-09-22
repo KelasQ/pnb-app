@@ -70,6 +70,24 @@
                 text: pesanSuccess
             });
         }
+
+        $('.btnHapusData').click(function(e) {
+            e.preventDefault();
+            const form = $(this).closest('form');
+            Swal.fire({
+                title: 'Yaking Ingin Dihapus ?',
+                text: "Data yang telah dihapus, tidak dapat dilihat kembali!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            })
+        });
     </script>
 </body>
 

@@ -41,7 +41,7 @@
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" title="Hapus Data"
-                                                        class="btn btn-danger btn-sm"><i class="align-middle"
+                                                        class="btn btn-danger btn-sm btnHapusData"><i class="align-middle"
                                                             data-feather="trash-2"></i></button>
                                                 </form>
                                             </td>
