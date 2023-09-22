@@ -29,7 +29,7 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        Role::create($request->validate(['role'  =>  ['required']]));
+        Role::create($request->validate(['role'  =>  'required']));
         return redirect(url('role'))->with('success', 'Data Role Berhasil Disimpan.');
     }
 
@@ -43,7 +43,7 @@ class RoleController extends Controller
 
     public function update(Request $request, Role $role)
     {
-        $role->update($request->validate(['role'  =>  ['required']]));
+        $role->update($request->validate(['role'  =>  'required']));
         return redirect(url('role'))->with('success', 'Data Role Berhasil Diupdate.');
     }
 

@@ -26,7 +26,7 @@ class KlasterController extends Controller
 
     public function store(Request $request)
     {
-        Klaster::create($request->validate(['klaster'  =>  ['required']]));
+        Klaster::create($request->validate(['klaster'  =>  'required']));
         return redirect(url('klaster'))->with('success', 'Data Klaster Berhasil Disimpan.');
     }
 
@@ -40,7 +40,7 @@ class KlasterController extends Controller
 
     public function update(Request $request, Klaster $klaster)
     {
-        $klaster->update($request->validate(['klaster'  =>  ['required']]));
+        $klaster->update($request->validate(['klaster'  =>  'required']));
         return redirect(url('klaster'))->with('success', 'Data Klaster Berhasil Diupdate.');
     }
 
