@@ -7,11 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>PNG | Login</title>
+    <title>PNB | Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link class="js-stylesheet" href="css/light.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('img/bg-login.jpeg');
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
 </head>
 
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
@@ -23,9 +30,9 @@
                         <div class="d-table-cell align-middle">
 
                             <div class="text-center mt-4">
-                                <h1 class="h2">Welcome back!</h1>
+                                <h1 class="h2">Kementrian Sosial <br> Sentra "Bahagia" Di Medan</h1>
                                 <p class="lead">
-                                    Sign in to your account to continue
+                                    JL. Williem Iskandar No. 377 Medan 20222 <br> Telp. 061 - 6613305
                                 </p>
                             </div>
 
