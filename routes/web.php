@@ -8,6 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get(RouteServiceProvider::HOME, fn () => view('dashboard'));
 
-Route::resource('roles', RoleController::class);
+Route::resource('role', RoleController::class);
 Route::resource('users', UserController::class);
 Route::resource('karyawan', KaryawanController::class);

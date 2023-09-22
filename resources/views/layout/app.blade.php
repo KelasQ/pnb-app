@@ -25,9 +25,7 @@
             @include('layout.navbar')
 
             <main class="content">
-                <div class="container-fluid p-0">
-                    @yield('content')
-                </div>
+                @yield('content')
             </main>
 
             <footer class="footer">
