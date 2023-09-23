@@ -41,6 +41,7 @@ class SubKlasterController extends Controller
     {
 
         return view('sub_klaster.edit', [
+            'title'     =>  'Update Data Sub Klaster',
             'submit'        =>  'Update',
             'klaster'       =>  Klaster::all(),
             'sub_klaster'    =>  $sub_klaster

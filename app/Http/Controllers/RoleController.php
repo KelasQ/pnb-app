@@ -31,12 +31,13 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         Role::create($request->validate(['role'  =>  'required']));
-        return redirect(url('role'))->with('success', 'Data Role Berhasil Disimpan.');
+        return redirect(route('role.index'))->with('success', 'Data Role Berhasil Disimpan.');
     }
 
     public function edit(Role $role)
     {
         return view('role.edit', [
+            'title'     =>  'Update Data Role',
             'submit'    =>  'Update',
             'role'      =>  $role
         ]);
@@ -45,12 +46,12 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $role->update($request->validate(['role'  =>  'required']));
-        return redirect(url('role'))->with('success', 'Data Role Berhasil Diupdate.');
+        return redirect(route('role.index'))->with('success', 'Data Role Berhasil Diupdate.');
     }
 
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect(url('role'))->with('success', 'Data Role Berhasil Dihapus.');
+        return redirect(route('role.index'))->with('success', 'Data Role Berhasil Dihapus.');
     }
 }

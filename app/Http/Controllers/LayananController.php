@@ -28,12 +28,13 @@ class LayananController extends Controller
     public function store(Request $request)
     {
         Layanan::create($request->validate(['layanan'  =>  'required']));
-        return redirect(url('layanan'))->with('success', 'Data Layanan Berhasil Disimpan.');
+        return redirect(route('layanan.index'))->with('success', 'Data Layanan Berhasil Disimpan.');
     }
 
     public function edit(Layanan $layanan)
     {
         return view('layanan.edit', [
+            'title'     =>  'Update Data Layanan',
             'submit'    =>  'Update',
             'layanan'   =>  $layanan
         ]);
@@ -42,12 +43,12 @@ class LayananController extends Controller
     public function update(Request $request, Layanan $layanan)
     {
         $layanan->update($request->validate(['layanan'  =>  'required']));
-        return redirect(url('layanan'))->with('success', 'Data Layanan Berhasil Diupdate.');
+        return redirect(route('layanan.index'))->with('success', 'Data Layanan Berhasil Diupdate.');
     }
 
     public function destroy(Layanan $layanan)
     {
         $layanan->delete();
-        return redirect(url('layanan'))->with('success', 'Data Layanan Berhasil Dihapus.');
+        return redirect(route('layanan.index'))->with('success', 'Data Layanan Berhasil Dihapus.');
     }
 }

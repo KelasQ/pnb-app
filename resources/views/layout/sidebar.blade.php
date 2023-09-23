@@ -76,7 +76,7 @@
                 </a>
                 <ul id="masterDataBantuan" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                     <li class="sidebar-item{{ Request::is('bantuan') ? ' active' : '' }}"><a class="sidebar-link"
-                            href="{{ url('bantuan') }}">Data Bantuan</a>
+                            href="{{ route('bantuan.index') }}">Data Bantuan</a>
                     </li>
                     <li class="sidebar-item{{ Request::is('subBantuan') ? ' active' : '' }}"><a class="sidebar-link"
                             href="{{ url('subBantuan') }}">Data Sub
