@@ -11,10 +11,9 @@ class SubBantuanController extends Controller
 {
     public function index()
     {
-        $sub_bantuan = SubBantuan::orderBy('id', 'DESC')->paginate(20);
         return view('sub_bantuan.index', [
             'title'     =>  'Data Klaster',
-            'sub_bantuans'  => $sub_bantuan
+            'sub_bantuans'  => SubBantuan::orderBy('id', 'DESC')->paginate(20)
         ]);
     }
 

@@ -30,7 +30,7 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        Role::create($request->validate(['role'  =>  'required']));
+        Role::create($request->validate(['role'  =>  'required|unique:roles,role']));
         return redirect(route('role.index'))->with('success', 'Data Role Berhasil Disimpan.');
     }
 

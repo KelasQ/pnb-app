@@ -17,9 +17,9 @@
                 <ul id="masterDataUser" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item{{ Request::is('role') ? ' active' : '' }}"><a class="sidebar-link"
                             href="{{ route('role.index') }}">Roles User</a></li>
-                    {{-- <li class="sidebar-item{{ Request::is('user') ? ' active' : '' }}"><a class="sidebar-link"
-                            href="{{ route('user') }}">Data Users</a></li>
-                    <li class="sidebar-item{{ Request::is('karyawan') ? ' active' : '' }}"><a class="sidebar-link"
+                    <li class="sidebar-item{{ Request::is('user') ? ' active' : '' }}"><a class="sidebar-link"
+                            href="{{ route('user.index') }}">Data Users</a></li>
+                    {{-- <li class="sidebar-item{{ Request::is('karyawan') ? ' active' : '' }}"><a class="sidebar-link"
                             href="{{ route('karyawan') }}">Data Karyawan</a></li> --}}
                 </ul>
             </li>
