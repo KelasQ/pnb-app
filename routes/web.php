@@ -23,7 +23,7 @@ Route::resource('klaster', KlasterController::class);
 Route::resource('sub-klaster', SubKlasterController::class);
 
 Route::resource('bantuan', BantuanController::class);
-// Route::resource('subBantuan', SubBantuanController::class);
+Route::resource('sub-bantuan', SubBantuanController::class);
 
 Route::resource('layanan', LayananController::class);
 Route::resource('case', CaseController::class);

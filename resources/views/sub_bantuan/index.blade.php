@@ -7,12 +7,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            Data Bantuan
+                            Data Sub Bantuan
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('bantuan.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                            <a href="{{ route('sub-bantuan.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="plus-circle"></i>
-                                Tambah Data Bantuan</a>
+                                Tambah Data Sub Bantuan</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -22,18 +22,20 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Bantuan</th>
+                                        <th>Sub Bantuan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($bantuans as $i => $bantuan)
+                                    @foreach ($sub_bantuans as $i => $sub_bantuan)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $bantuan->bantuan }}</td>
+                                            <td>{{ $sub_bantuan->bantuan->bantuan }}</td>
+                                            <td>{{ $sub_bantuan->sub_bantuan }}</td>
                                             <td>
-                                                <form action="{{ route('bantuan.destroy', $bantuan->id) }}" method="post"
-                                                    style="display: inline;">
-                                                    <a href="{{ route('bantuan.edit', $bantuan->id) }}"
+                                                <form action="{{ route('sub-bantuan.destroy', $sub_bantuan) }}"
+                                                    method="post" style="display: inline;">
+                                                    <a href="{{ route('sub-bantuan.edit', $sub_bantuan) }}"
                                                         class="btn btn-warning btn-sm" title="Edit Data"><i
                                                             class="align-middle" data-feather="edit"></i></a>
                                                     @method('DELETE')
@@ -48,7 +50,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $bantuans->links() }}
+                            {{ $sub_bantuans->links() }}
                         </div>
                     </div>
                 </div>

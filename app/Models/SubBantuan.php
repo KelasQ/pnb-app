@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SubBantuan extends Model
 {
-    use HasFactory;
+    protected $table = 'sub_bantuan';
+    protected $fillable = ['bantuan_id', 'sub_bantuan'];
+
+    public function bantuan()
+    {
+        return $this->belongsTo(Bantuan::class);
+    }
 }

@@ -69,7 +69,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="sidebar-item{{ Request::is('bantuan', 'subBantuan') ? ' active' : '' }}">
+            <li class="sidebar-item{{ Request::is('bantuan', 'sub-bantuan') ? ' active' : '' }}">
                 <a data-bs-target="#masterDataBantuan" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="package"></i> <span class="align-middle">Master Data
                         Bantuan</span>
@@ -78,8 +78,8 @@
                     <li class="sidebar-item{{ Request::is('bantuan') ? ' active' : '' }}"><a class="sidebar-link"
                             href="{{ route('bantuan.index') }}">Data Bantuan</a>
                     </li>
-                    <li class="sidebar-item{{ Request::is('subBantuan') ? ' active' : '' }}"><a class="sidebar-link"
-                            href="{{ url('subBantuan') }}">Data Sub
+                    <li class="sidebar-item{{ Request::is('sub-bantuan') ? ' active' : '' }}"><a class="sidebar-link"
+                            href="{{ route('sub-bantuan.index') }}">Data Sub
                             Bantuan</a>
                     </li>
                 </ul>

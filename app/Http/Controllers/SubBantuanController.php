@@ -2,63 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bantuan;
+use App\Models\SubBantuan;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class SubBantuanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $sub_bantuan = SubBantuan::orderBy('id', 'DESC')->paginate(20);
+        return view('sub_bantuan.index', [
+            'title'     =>  'Data Klaster',
+            'sub_bantuans'  => $sub_bantuan
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('sub_bantuan.create', [
+            'bantuan'       =>  Bantuan::all(),
+            'sub_bantuan'   =>  new SubBantuan,
+            'submit'        => 'Simpan',
+            'title'         => 'Tambah Data Sub Bantuan'
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        SubBantuan::create($request->validate([
+            'bantuan_id' => 'required',
+            'sub_bantuan'  =>  'required'
+        ]));
+        return redirect(route('sub-bantuan.index'))->with('success', 'Data Sub Bantuan Berhasil Disimpan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(SubBantuan $sub_bantuan)
     {
-        //
+        return view('sub_bantuan.edit', [
+            'title'     =>  'Update Data Sub Bantuan',
+            'submit'        =>  'Update',
+            'bantuan'       =>  Bantuan::all(),
+            'sub_bantuan'    =>  $sub_bantuan
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, SubBantuan $sub_bantuan)
     {
-        //
+        $sub_bantuan->update($request->validate([
+            'bantuan_id'    =>  'required',
+            'sub_bantuan'   =>  'required'
+        ]));
+        return redirect(route('sub-bantuan.index'))->with('success', 'Data Sub Bantuan Berhasil Diupdate.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(SubBantuan $sub_bantuan)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $sub_bantuan->delete();
+        return redirect(route('sub-bantuan.index'))->with('success', 'Data Sub Bantuan Berhasil Dihapus.');
     }
 }

@@ -41,10 +41,9 @@
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" title="Hapus Data"
-                                                        class="btn btn-danger btn-sm btnHapusData
-                                                        onclick="return(confirm('Yaking
-                                                        Ingin Dihapus ?'))""><i class="align-middle"
-                                                            data-feather="trash-2"></i></button>
+                                                        class="btn btn-danger btn-sm btnHapusData"
+                                                        onclick="return confirm('Yakin Ingin Dihapus ?')"><i
+                                                            class="align-middle" data-feather="trash-2"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
