@@ -16,11 +16,11 @@
                 </a>
                 <ul id="masterDataUser" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item{{ Request::is('role') ? ' active' : '' }}"><a class="sidebar-link"
-                            href="{{ url('role') }}">Roles User</a></li>
-                    <li class="sidebar-item{{ Request::is('user') ? ' active' : '' }}"><a class="sidebar-link"
-                            href="{{ url('user') }}">Data Users</a></li>
+                            href="{{ route('role.index') }}">Roles User</a></li>
+                    {{-- <li class="sidebar-item{{ Request::is('user') ? ' active' : '' }}"><a class="sidebar-link"
+                            href="{{ route('user') }}">Data Users</a></li>
                     <li class="sidebar-item{{ Request::is('karyawan') ? ' active' : '' }}"><a class="sidebar-link"
-                            href="{{ url('karyawan') }}">Data Karyawan</a></li>
+                            href="{{ route('karyawan') }}">Data Karyawan</a></li> --}}
                 </ul>
             </li>
             <li class="sidebar-item{{ Request::is('registrasi', 'penerimaBantuan') ? ' active' : '' }}">
@@ -55,16 +55,16 @@
                     </li>
                 </ul>
             </li>
-            <li class="sidebar-item{{ Request::is('klaster', 'subKlaster') ? ' active' : '' }}">
+            <li class="sidebar-item{{ Request::is('klaster', 'sub-klaster') ? ' active' : '' }}">
                 <a data-bs-target="#masterDataKlaster" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="columns"></i> <span class="align-middle">Master Data
                         Klaster</span>
                 </a>
                 <ul id="masterDataKlaster" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                     <li class="sidebar-item{{ Request::is('klaster') ? ' active' : '' }}"><a class="sidebar-link"
-                            href="{{ url('klaster') }}">Data Klaster</a></li>
-                    <li class="sidebar-item{{ Request::is('subKlaster') ? ' active' : '' }}"><a class="sidebar-link"
-                            href="{{ url('subKlaster') }}">Data Sub
+                            href="{{ route('klaster.index') }}">Data Klaster</a></li>
+                    <li class="sidebar-item{{ Request::is('sub-klaster') ? ' active' : '' }}"><a class="sidebar-link"
+                            href="{{ route('sub-klaster.index') }}">Data Sub
                             Klaster</a>
                     </li>
                 </ul>
@@ -85,12 +85,12 @@
                 </ul>
             </li>
             <li class="sidebar-item{{ Request::is('layanan') ? ' active' : '' }}">
-                <a class="sidebar-link" href="{{ url('layanan') }}">
+                <a class="sidebar-link" href="{{ route('layanan.index') }}">
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Data Layanan</span>
                 </a>
             </li>
-            <li class="sidebar-item{{ Request::is('kasus') ? ' active' : '' }}">
-                <a class="sidebar-link" href="{{ url('kasus') }}">
+            <li class="sidebar-item{{ Request::is('case') ? ' active' : '' }}">
+                <a class="sidebar-link" href="{{ route('case.index') }}">
                     <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Data
                         Kasus</span>
                 </a>

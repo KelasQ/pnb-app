@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header bg-dark">
-                        <div class="float-start text-white">
+                    <div class="card-header">
+                        <div class="float-start">
                             Data Layanan
                         </div>
                         <div class="float-end">
-                            <a href="{{ url('layanan/create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                            <a href="{{ route('layanan.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="plus-circle"></i>
                                 Tambah Data Layanan</a>
                         </div>
@@ -26,27 +26,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($layanan as $i => $layanan)
+                                    @foreach ($layanans as $i => $layanan)
                                         <tr>
                                             <td>{{ $i + 1 }}</td>
                                             <td>{{ $layanan->layanan }}</td>
                                             <td>
-                                                <form action="{{ url('layanan/' . $layanan->id) }}" method="post"
+                                                <form action="{{ route('layanan.destroy', $layanan->id) }}" method="post"
                                                     style="display: inline;">
-                                                    <a href="{{ url('layanan/' . $layanan->id . '/edit') }}"
+                                                    <a href="{{ route('layanan.edit', $layanan->id) }}"
                                                         class="btn btn-warning btn-sm" title="Edit Data"><i
                                                             class="align-middle" data-feather="edit"></i></a>
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" title="Hapus Data"
-                                                        class="btn btn-danger btn-sm btnHapusData"><i class="align-middle"
-                                                            data-feather="trash-2"></i></button>
+                                                        class="btn btn-danger btn-sm btnHapusData"
+                                                        onclick="return(confirm('Yaking Ingin Dihapus ?'))"><i
+                                                            class="align-middle" data-feather="trash-2"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $layanans->links() }}
                         </div>
                     </div>
                 </div>

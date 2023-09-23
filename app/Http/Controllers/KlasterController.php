@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Klaster;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class KlasterController extends Controller
 {
@@ -11,7 +12,7 @@ class KlasterController extends Controller
     {
         return view('klaster.index', [
             'title'     =>  'Data Klaster',
-            'klasters'  =>  Klaster::orderBy('id', 'DESC')->get()
+            'klasters'  =>  Klaster::orderBy('id', 'DESC')->paginate(20)
         ]);
     }
 

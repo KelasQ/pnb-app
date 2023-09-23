@@ -7,12 +7,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            Data Sub Klaster
+                            Data Kasus
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('sub-klaster.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                            <a href="{{ route('case.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="plus-circle"></i>
-                                Tambah Data Sub Klaster</a>
+                                Tambah Data Kasus</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -21,37 +21,34 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Klaster</th>
-                                        <th>Sub Klaster</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($sub_klasters as $i => $sub_klaster)
+                                    @foreach ($cases as $i => $case)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $sub_klaster->klaster->klaster }}</td>
-                                            <td>{{ $sub_klaster->sub_klaster }}</td>
+                                            <td>{{ $case->kasus }}</td>
                                             <td>
-                                                <form action="{{ route('sub-klaster.destroy', $sub_klaster) }}"
-                                                    method="post" style="display: inline;">
-                                                    <a href="{{ route('sub-klaster.edit', $sub_klaster) }}"
+                                                <form action="{{ route('case.destroy', $case->id) }}" method="post"
+                                                    style="display: inline;">
+                                                    <a href="{{ route('case.edit', $case->id) }}"
                                                         class="btn btn-warning btn-sm" title="Edit Data"><i
                                                             class="align-middle" data-feather="edit"></i></a>
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" title="Hapus Data"
-                                                        class="btn btn-danger btn-sm btnHapusData
-                                                        onclick="return(confirm('Yaking
-                                                        Ingin Dihapus ?'))""><i class="align-middle"
-                                                            data-feather="trash-2"></i></button>
+                                                        class="btn btn-danger btn-sm btnHapusData"
+                                                        onclick="return(confirm('Yaking Ingin Dihapus ?'))"><i
+                                                            class="align-middle" data-feather="trash-2"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $sub_klasters->links() }}
+                            {{ $cases->links() }}
                         </div>
                     </div>
                 </div>

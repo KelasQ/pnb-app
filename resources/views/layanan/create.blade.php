@@ -5,19 +5,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header bg-dark">
-                        <div class="float-start text-white">
+                    <div class="card-header">
+                        <div class="float-start">
                             Tambah Data Layanan
                         </div>
                         <div class="float-end">
-                            <a href="{{ url('layanan') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                            <a href="{{ route('layanan.index') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="arrow-left-circle"></i> Kembali</a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 offset-md-3">
-                                <form action="{{ url('layanan') }}" method="post">
+                                <form action="{{ route('layanan.store') }}" method="post">
                                     @csrf
                                     @include('layanan._form')
                                 </form>

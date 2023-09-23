@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BantuanController;
+use App\Http\Controllers\CaseController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KlasterController;
 use App\Http\Controllers\LayananController;
@@ -19,9 +20,10 @@ Route::resource('role', RoleController::class);
 // Route::resource('karyawan', KaryawanController::class);
 
 Route::resource('klaster', KlasterController::class);
-Route::resource('subKlaster', SubKlasterController::class);
+Route::resource('sub-klaster', SubKlasterController::class);
 
 // Route::resource('bantuan', BantuanController::class);
 // Route::resource('subBantuan', SubBantuanController::class);
 
 Route::resource('layanan', LayananController::class);
+Route::resource('case', CaseController::class);

@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header bg-dark">
-                        <div class="float-start text-white">
+                    <div class="card-header">
+                        <div class="float-start">
                             Data Klaster
                         </div>
                         <div class="float-end">
-                            <a href="{{ url('klaster/create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                            <a href="{{ route('klaster.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="plus-circle"></i>
                                 Tambah Data Klaster</a>
                         </div>
@@ -31,22 +31,24 @@
                                             <td>{{ $i + 1 }}</td>
                                             <td>{{ $klaster->klaster }}</td>
                                             <td>
-                                                <form action="{{ url('klaster/' . $klaster->id) }}" method="post"
+                                                <form action="{{ route('klaster.destroy', $klaster->id) }}" method="post"
                                                     style="display: inline;">
-                                                    <a href="{{ url('klaster/' . $klaster->id . '/edit') }}"
+                                                    <a href="{{ route('klaster.edit', $klaster->id) }}"
                                                         class="btn btn-warning btn-sm" title="Edit Data"><i
                                                             class="align-middle" data-feather="edit"></i></a>
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" title="Hapus Data"
-                                                        class="btn btn-danger btn-sm btnHapusData"><i class="align-middle"
-                                                            data-feather="trash-2"></i></button>
+                                                        class="btn btn-danger btn-sm btnHapusData"
+                                                        onclick="return(confirm('Yaking Ingin Dihapus ?'))"><i
+                                                            class="align-middle" data-feather="trash-2"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $klasters->links() }}
                         </div>
                     </div>
                 </div>

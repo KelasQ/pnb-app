@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Layanan;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class LayananController extends Controller
 {
@@ -11,7 +12,7 @@ class LayananController extends Controller
     {
         return view('layanan.index', [
             'title'     =>  'Data Layanan',
-            'layanan'     =>  Layanan::orderBy('id', 'DESC')->get()
+            'layanans'     =>  Layanan::orderBy('id', 'DESC')->paginate(20)
         ]);
     }
 
@@ -30,7 +31,7 @@ class LayananController extends Controller
         return redirect(url('layanan'))->with('success', 'Data Layanan Berhasil Disimpan.');
     }
 
-    public function edit(Request $request, Layanan $layanan)
+    public function edit(Layanan $layanan)
     {
         return view('layanan.edit', [
             'submit'    =>  'Update',

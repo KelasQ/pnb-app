@@ -5,19 +5,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header bg-dark">
-                        <div class="float-start text-white">
+                    <div class="card-header">
+                        <div class="float-start">
                             Tambah Data Sub Klaster
                         </div>
                         <div class="float-end">
-                            <a href="{{ url('subKlaster') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                            <a href="{{ route('sub-klaster.index') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="arrow-left-circle"></i> Kembali</a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 offset-md-3">
-                                <form action="{{ url('subKlaster') }}" method="post">
+                                <form action="{{ route('sub-klaster.store') }}" method="post">
                                     @csrf
                                     @include('sub_klaster._form')
                                 </form>

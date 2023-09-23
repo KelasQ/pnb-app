@@ -5,26 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Klaster;
 use App\Models\SubKlaster;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class SubKlasterController extends Controller
 {
     public function index()
     {
-        $subKlaster = DB::table('sub_klaster')
-            ->join('klaster', 'sub_klaster.klaster_id', '=', 'klaster.id')
-            ->select('klaster.klaster', 'sub_klaster.sub_klaster', 'sub_klaster.id')
-            ->get();
+        $sub_klaster = SubKlaster::orderBy('id', 'DESC')->paginate(20);
         return view('sub_klaster.index', [
             'title'     =>  'Data Klaster',
-            'subKlaster'  => $subKlaster
+            'sub_klasters'  => $sub_klaster
         ]);
     }
 
     public function create()
     {
         return view('sub_klaster.create', [
-            'klaster'       => DB::table('klaster')->get(),
+            'klaster'       =>  Klaster::all(),
             'sub_klaster'   =>  new SubKlaster,
             'submit'        => 'Simpan',
             'title'         => 'Tambah Data Sub Klaster'
@@ -37,21 +34,16 @@ class SubKlasterController extends Controller
             'klaster_id' => 'required',
             'sub_klaster'  =>  'required'
         ]));
-        return redirect(url('subKlaster'))->with('success', 'Data Sub Klaster Berhasil Disimpan.');
+        return redirect(route('sub-klaster.index'))->with('success', 'Data Sub Klaster Berhasil Disimpan.');
     }
 
-    public function edit(Request $request, SubKlaster $subKlaster)
+    public function edit(SubKlaster $sub_klaster)
     {
-        $dataKlaster = DB::table('klaster')->whereNot('id', $subKlaster->klaster_id)->get();
-        $dataSubKlaster = SubKlaster::where('sub_klaster.id', $subKlaster->id)
-            ->join('klaster', 'sub_klaster.klaster_id', '=', 'klaster.id')
-            ->select('klaster.id', 'klaster.klaster', 'sub_klaster.id', 'sub_klaster.sub_klaster', 'sub_klaster.klaster_id')
-            ->first();
 
         return view('sub_klaster.edit', [
             'submit'        =>  'Update',
-            'klaster'       =>  $dataKlaster,
-            'subKlaster'    =>  $dataSubKlaster
+            'klaster'       =>  Klaster::all(),
+            'sub_klaster'    =>  $sub_klaster
         ]);
     }
 
@@ -61,12 +53,12 @@ class SubKlasterController extends Controller
             'klaster_id'    =>  'required',
             'sub_klaster'   =>  'required'
         ]));
-        return redirect(url('subKlaster'))->with('success', 'Data Sub Klaster Berhasil Diupdate.');
+        return redirect(route('sub-klaster.index'))->with('success', 'Data Sub Klaster Berhasil Diupdate.');
     }
 
     public function destroy(SubKlaster $subKlaster)
     {
         $subKlaster->delete();
-        return redirect(url('subKlaster'))->with('success', 'Data Sub Klaster Berhasil Dihapus.');
+        return redirect(route('sub-klaster.index'))->with('success', 'Data Sub Klaster Berhasil Dihapus.');
     }
 }

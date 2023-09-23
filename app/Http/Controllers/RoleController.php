@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\Role;
 
@@ -14,7 +15,7 @@ class RoleController extends Controller
         // })->orderBy('id','DESC')->paginate(20);
         return view('role.index', [
             'title'     =>  'Data Role',
-            'roles'     =>  Role::orderBy('id', 'DESC')->get()
+            'roles'     =>  Role::orderBy('id', 'DESC')->paginate(20)
         ]);
     }
 
@@ -33,7 +34,7 @@ class RoleController extends Controller
         return redirect(url('role'))->with('success', 'Data Role Berhasil Disimpan.');
     }
 
-    public function edit(Request $request, Role $role)
+    public function edit(Role $role)
     {
         return view('role.edit', [
             'submit'    =>  'Update',

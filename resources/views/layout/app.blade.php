@@ -13,15 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link class="js-stylesheet" href="{{ url('css/light.css') }}" rel="stylesheet">
     {{-- <script src="js/settings.js"></script> --}}
-    <link rel="stylesheet" href="{{ url('css/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/sweetalert2.min.css') }}">
 </head>
 
-<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
 
-    @if (session()->has('success'))
+    {{-- @if (session()->has('success'))
         <div class="pesanSuccess" data-swal="{{ session()->get('success') }}"></div>
-    @endif
+    @endif --}}
 
     <div class="wrapper">
 
@@ -32,6 +31,19 @@
             @include('layout.navbar')
 
             <main class="content">
+                @if (session()->has('success'))
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-primary alert-dismissible" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                                <div class="alert-message">
+                                    <strong>{{ session()->get('success') }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 @yield('content')
             </main>
 
@@ -56,38 +68,41 @@
         </div>
     </div>
 
-    <script src="{{ url('js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ url('js/datatables.min.js') }}"></script>
+    {{-- <script src="{{ url('js/jquery-3.7.1.min.js') }}"></script> --}}
     <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ url('js/app.js') }}"></script>
-    <script src="{{ url('js/script.js') }}"></script>
     <script>
-        const pesanSuccess = $('.pesanSuccess').data('swal');
-        if (pesanSuccess) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil...',
-                text: pesanSuccess
-            });
-        }
-
-        $('.btnHapusData').click(function(e) {
-            e.preventDefault();
-            const form = $(this).closest('form');
-            Swal.fire({
-                title: 'Yaking Ingin Dihapus ?',
-                text: "Data yang telah dihapus, tidak dapat dilihat kembali!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            })
+        $('.dataTable').DataTable({
+            // responsive: true,
+            paging: false,
+            info: false
         });
+        // const pesanSuccess = $('.pesanSuccess').data('swal');
+        // if (pesanSuccess) {
+        //     Swal.fire({
+        //         icon: 'success',
+        //         title: 'Berhasil...',
+        //         text: pesanSuccess
+        //     });
+        // }
+
+        // $('.btnHapusData').click(function(e) {
+        //     e.preventDefault();
+        //     const form = $(this).closest('form');
+        //     Swal.fire({
+        //         title: 'Yaking Ingin Dihapus ?',
+        //         text: "Data yang telah dihapus, tidak dapat dilihat kembali!",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Ya, Hapus!'
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             form.submit();
+        //         }
+        //     })
+        // });
     </script>
 </body>
 
