@@ -49,8 +49,10 @@
 </div>
 <div class="form-group">
     <label for="foto">Foto Profil</label>
-    <input type="file" name="foto" id="foto" class="form-control mt-1 @error('foto') is-invalid @enderror"
-        placeholder="Foto Profil" value="{{ old('foto', $user->foto) }}" accept="image/png, image/jpeg, image/jpg">
+    <img class="user-foto-preview img-fluid mb-1" style="width: 100px">
+    <input type="file" name="foto" id="foto"
+        class="form-control mt-1 foto-user @error('foto') is-invalid @enderror" placeholder="Foto Profil"
+        value="{{ old('foto', $user->foto) }}" accept="image/png, image/jpeg, image/jpg" onchange="previewFotoUser()">
     @error('foto')
         <div class="invalid-feedback">
             {{ $message }}

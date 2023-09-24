@@ -42,15 +42,14 @@ class UserController extends Controller
         ]);
 
         //upload foto
-        $foto = $request->file('foto');
-        $foto->storeAs('public/users', $foto->hashName());
+        $request->file('foto')->store('users');
 
         User::create([
             'role_id'   =>  $request->role_id,
             'nama'      =>  $request->nama,
             'email'     =>  $request->email,
             'telp'      =>  $request->telp,
-            'foto'      =>  $foto->hashName(),
+            'foto'      =>  $request->foto->hashName(),
             'username'  =>  $request->username,
             'password'  =>  Hash::make($request->password)
         ]);
@@ -79,21 +78,18 @@ class UserController extends Controller
             'telp'         =>  'required',
             'foto'         =>  'image|mimes:jpeg,jpg,png|max:2048',
             'username'     =>  $validasi,
-            'password'     =>  'required|min:5',
         ]);
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $foto->storeAs('public/users', $foto->hashName());
-            Storage::delete('public/users/' . $user->foto);
+            Storage::delete('users/' . $user->foto);
+            $request->file('foto')->store('users');
             $user->update([
                 'role_id'   =>  $request->role_id,
                 'nama'      =>  $request->nama,
                 'email'     =>  $request->email,
                 'telp'      =>  $request->telp,
-                'foto'      =>  $foto->hashName(),
+                'foto'      =>  $request->foto->hashName(),
                 'username'  =>  $request->username,
-                'password'  =>  Hash::make($request->password)
             ]);
         } else {
             $user->update([
@@ -101,8 +97,7 @@ class UserController extends Controller
                 'nama'      =>  $request->nama,
                 'email'     =>  $request->email,
                 'telp'      =>  $request->telp,
-                'username'  =>  $request->username,
-                'password'  =>  Hash::make($request->password)
+                'username'  =>  $request->username
             ]);
         }
         return redirect(route('user.index'))->with('success', 'Data User Berhasil Diupdate.');
@@ -110,7 +105,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        Storage::delete('public/users/' . $user->foto);
+        Storage::delete('users/' . $user->foto);
         $user->delete();
         return redirect(route('user.index'))->with('success', 'Data User Berhasil Dihapus.');
     }

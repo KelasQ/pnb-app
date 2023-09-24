@@ -77,6 +77,21 @@
             paging: false,
             info: false
         });
+
+        function previewFotoUser() {
+            const userFoto = document.querySelector('.foto-user');
+            const userFotoPreview = document.querySelector('.user-foto-preview');
+
+            userFotoPreview.style.display = "block";
+            userFotoPreview.style.background = "red";
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(userFoto.files[0]);
+            oFReader.onload = function(oFREvent) {
+                userFotoPreview.src = oFREvent.target.result;
+            }
+        }
+
         // const pesanSuccess = $('.pesanSuccess').data('swal');
         // if (pesanSuccess) {
         //     Swal.fire({
