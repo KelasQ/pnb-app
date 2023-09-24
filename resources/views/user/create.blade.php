@@ -72,17 +72,16 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <img src="{{ asset('img/profile.png') }}"
-                                                class="user-foto-preview img-fluid rounded mt-3" style="width: 100px;">
+                                                class="imagePreview img-fluid rounded mt-3" style="width: 100px;">
                                         </div>
                                         <div class="col-md-9">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label for="foto">Foto Profil</label>
                                                     <input type="file" name="foto" id="foto"
-                                                        class="form-control mt-1 foto-user @error('foto') is-invalid @enderror"
+                                                        class="form-control mt-1 inputImageFile @error('foto') is-invalid @enderror"
                                                         placeholder="Foto Profil" value="{{ old('foto') }}"
-                                                        accept="image/png, image/jpeg, image/jpg"
-                                                        onchange="previewFotoUser()">
+                                                        accept="image/png, image/jpeg, image/jpg" onchange="previewImage()">
                                                     @error('foto')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}

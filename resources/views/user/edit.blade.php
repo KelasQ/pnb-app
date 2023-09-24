@@ -77,10 +77,10 @@
                                         <div class="col-md-3">
                                             @if ($user->foto)
                                                 <img src="{{ asset('storage/users/' . $user->foto) }}"
-                                                    class="user-foto-preview rounded img-fluid mt-3 d-block"
+                                                    class="imagePreview rounded img-fluid mt-3 d-block"
                                                     style="width: 100px">
                                             @else
-                                                <img class="user-foto-preview rounded img-fluid mt-3" style="width: 100px">
+                                                <img class="imagePreview rounded img-fluid mt-3" style="width: 100px">
                                             @endif
                                         </div>
                                         <div class="col-md-9">
@@ -88,10 +88,9 @@
                                                 <div class="col-md-12">
                                                     <label for="foto">Foto Profil</label>
                                                     <input type="file" name="foto" id="foto"
-                                                        class="form-control mt-1 foto-user @error('foto') is-invalid @enderror"
+                                                        class="form-control mt-1 inputImageFile @error('foto') is-invalid @enderror"
                                                         placeholder="Foto Profil" value="{{ old('foto') }}"
-                                                        accept="image/png, image/jpeg, image/jpg"
-                                                        onchange="previewFotoUser()">
+                                                        accept="image/png, image/jpeg, image/jpg" onchange="previewImage()">
                                                     @error('foto')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}

@@ -49,20 +49,19 @@
     <div class="col-md-3">
         @if ($karyawan->foto)
             <img src="{{ asset('storage/karyawan/' . $karyawan->foto) }}"
-                class="user-foto-preview rounded img-fluid mt-3 d-block" style="width: 100px">
+                class="imagePreview rounded img-fluid mt-3 d-block" style="width: 100px">
         @else
-            <img src="{{ asset('img/profile.png') }}" class="user-foto-preview img-fluid rounded mt-3"
-                style="width: 100px;">
+            <img src="{{ asset('img/profile.png') }}" class="imagePreview img-fluid rounded mt-3" style="width: 100px;">
         @endif
     </div>
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-12">
                 <label for="foto">Foto Profil</label>
-                <img class="user-foto-preview img-fluid mb-1" style="width: 100px">
                 <input type="file" name="foto" id="foto"
-                    class="form-control mt-1 foto-user @error('foto') is-invalid @enderror" placeholder="Foto Profil"
-                    value="{{ old('foto') }}" accept="image/png, image/jpeg, image/jpg" onchange="previewFotoUser()">
+                    class="form-control mt-1 inputImageFile @error('foto') is-invalid @enderror"
+                    placeholder="Foto Profil" value="{{ old('foto') }}" accept="image/png, image/jpeg, image/jpg"
+                    onchange="previewImage()">
                 @error('foto')
                     <div class="invalid-feedback">
                         {{ $message }}

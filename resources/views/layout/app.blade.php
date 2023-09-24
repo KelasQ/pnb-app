@@ -78,17 +78,16 @@
             info: false
         });
 
-        function previewFotoUser() {
-            const userFoto = document.querySelector('.foto-user');
-            const userFotoPreview = document.querySelector('.user-foto-preview');
+        function previewImage() {
+            const inputImageFile = document.querySelector('.inputImageFile');
+            const imagePreview = document.querySelector('.imagePreview');
 
-            userFotoPreview.style.display = "block";
-            userFotoPreview.style.background = "red";
+            imagePreview.style.display = "block";
 
             const oFReader = new FileReader();
-            oFReader.readAsDataURL(userFoto.files[0]);
+            oFReader.readAsDataURL(inputImageFile.files[0]);
             oFReader.onload = function(oFREvent) {
-                userFotoPreview.src = oFREvent.target.result;
+                imagePreview.src = oFREvent.target.result;
             }
         }
 
