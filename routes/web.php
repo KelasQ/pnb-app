@@ -17,7 +17,7 @@ Route::get('login', fn () => view('login'));
 
 Route::resource('role', RoleController::class);
 Route::resource('user', UserController::class);
-// Route::resource('karyawan', KaryawanController::class);
+Route::resource('karyawan', KaryawanController::class);
 
 Route::resource('klaster', KlasterController::class);
 Route::resource('sub-klaster', SubKlasterController::class);

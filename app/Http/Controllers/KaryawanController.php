@@ -2,63 +2,116 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Karyawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class KaryawanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('karyawan.index', [
+            'title'         =>  'Data Karyawan',
+            'karyawans'     =>  Karyawan::orderBy('id', 'DESC')->paginate(20)
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('karyawan.create', [
+            'karyawan'    =>  new Karyawan,
+            'submit'      => 'Simpan',
+            'title'       => 'Tambah Data Karyawan'
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nik'      =>  'required',
+            'nama'     =>  'required',
+            'email'    =>  'required|email|unique:users,email',
+            'telp'     =>  'required',
+            'jabatan'  =>  'required',
+            'foto'     =>  'required|image|mimes:jpeg,jpg,png|max:2048',
+            'alamat'   =>  'required'
+        ]);
+
+        //upload foto
+        $request->file('foto')->store('karyawan');
+
+        Karyawan::create([
+            'nik'     =>  $request->nik,
+            'nama'    =>  $request->nama,
+            'email'   =>  $request->email,
+            'telp'    =>  $request->telp,
+            'jabatan' =>  $request->jabatan,
+            'foto'    =>  $request->foto->hashName(),
+            'alamat'  =>  $request->alamat,
+        ]);
+
+        return redirect(route('karyawan.index'))->with('success', 'Data Karyawan Berhasil Disimpan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Karyawan $karyawan)
     {
-        //
+        return view('karyawan.show', [
+            'karyawan'    =>  $karyawan,
+            'title'       => 'Detail Data Karyawan'
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Karyawan $karyawan)
     {
-        //
+        return view('karyawan.edit', [
+            'title'     =>  'Update Data Karyawan',
+            'submit'    =>  'Update',
+            'karyawan'  =>  $karyawan
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Karyawan $karyawan)
     {
-        //
+        if ($request->email === $karyawan->email) $validasi = 'required|email';
+        $request->validate([
+            'nik'     =>  'required',
+            'nama'    =>  'required',
+            'email'   =>  $validasi,
+            'telp'    =>  'required',
+            'jabatan' =>  'required',
+            'foto'    =>  'image|mimes:jpeg,jpg,png|max:2048',
+            'alamat'  =>  'required',
+        ]);
+
+        if ($request->hasFile('foto')) {
+            Storage::delete('karyawan/' . $karyawan->foto);
+            $request->file('foto')->store('karyawan');
+            $karyawan->update([
+                'nik'     =>  $request->nik,
+                'nama'    =>  $request->nama,
+                'email'   =>  $request->email,
+                'telp'    =>  $request->telp,
+                'jabatan' =>  $request->jabatan,
+                'foto'    =>  $request->foto->hashName(),
+                'alamat'  =>  $request->alamat,
+            ]);
+        } else {
+            $karyawan->update([
+                'nik'     =>  $request->nik,
+                'nama'    =>  $request->nama,
+                'email'   =>  $request->email,
+                'telp'    =>  $request->telp,
+                'jabatan' =>  $request->jabatan,
+                'alamat'  =>  $request->alamat,
+            ]);
+        }
+        return redirect(route('karyawan.index'))->with('success', 'Data Karyawan Berhasil Diupdate.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Karyawan $karyawan)
     {
-        //
+        Storage::delete('karyawan/' . $karyawan->foto);
+        $karyawan->delete();
+        return redirect(route('karyawan.index'))->with('success', 'Data Karyawan Berhasil Dihapus.');
     }
 }
