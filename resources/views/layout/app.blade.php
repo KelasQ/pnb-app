@@ -43,6 +43,18 @@
                             </div>
                         </div>
                     </div>
+                @elseif (session()->has('warning'))
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                                <div class="alert-message">
+                                    <strong>{{ session()->get('warning') }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
                 @yield('content')
             </main>

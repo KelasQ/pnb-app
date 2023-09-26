@@ -32,7 +32,7 @@ class SubKlasterController extends Controller
     {
         SubKlaster::create($request->validate([
             'klaster_id' => 'required',
-            'sub_klaster'  =>  'required'
+            'sub_klaster'  =>  'required|unique:sub_klaster,sub_klaster'
         ]));
         return redirect(route('sub-klaster.index'))->with('success', 'Data Sub Klaster Berhasil Disimpan.');
     }

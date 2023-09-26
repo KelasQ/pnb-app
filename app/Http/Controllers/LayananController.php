@@ -27,7 +27,7 @@ class LayananController extends Controller
 
     public function store(Request $request)
     {
-        Layanan::create($request->validate(['layanan'  =>  'required']));
+        Layanan::create($request->validate(['layanan'  =>  'required|unique:layanan,layanan']));
         return redirect(route('layanan.index'))->with('success', 'Data Layanan Berhasil Disimpan.');
     }
 

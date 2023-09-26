@@ -27,7 +27,7 @@ class CaseController extends Controller
 
     public function store(Request $request)
     {
-        Kasus::create($request->validate(['kasus'  =>  'required']));
+        Kasus::create($request->validate(['kasus'  =>  'required|unique:kasus,kasus']));
         return redirect(route('case.index'))->with('success', 'Data Kasus Berhasil Disimpan.');
     }
 

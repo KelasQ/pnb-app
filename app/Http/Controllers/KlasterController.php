@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Klaster;
+use App\Models\SubKlaster;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 
 class KlasterController extends Controller
 {
@@ -27,7 +29,7 @@ class KlasterController extends Controller
 
     public function store(Request $request)
     {
-        Klaster::create($request->validate(['klaster'  =>  'required']));
+        Klaster::create($request->validate(['klaster'  =>  'required|unique:klaster,klaster']));
         return redirect(route('klaster.index'))->with('success', 'Data Klaster Berhasil Disimpan.');
     }
 
@@ -48,7 +50,11 @@ class KlasterController extends Controller
 
     public function destroy(Klaster $klaster)
     {
-        $klaster->delete();
-        return redirect(route('klaster.index'))->with('success', 'Data Klaster Berhasil Dihapus.');
+        $check = SubKlaster::where('klaster_id', $klaster->id)->count();
+        if ($check === 0) {
+            $klaster->delete();
+            return redirect(route('klaster.index'))->with('success', 'Data Klaster Berhasil Dihapus.');
+        }
+        return redirect(route('klaster.index'))->with("warning", "Maaf, Data Tidak Dapat Dihapus! Data Klaster ($klaster->klaster) Masih Tersedia Pada Data Sub Klaster!");
     }
 }

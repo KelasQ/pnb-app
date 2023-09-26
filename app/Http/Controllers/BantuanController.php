@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bantuan;
+use App\Models\SubBantuan;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -27,7 +28,7 @@ class BantuanController extends Controller
 
     public function store(Request $request)
     {
-        Bantuan::create($request->validate(['bantuan'  =>  'required']));
+        Bantuan::create($request->validate(['bantuan'  =>  'required|unique:bantuan,bantuan']));
         return redirect(route('bantuan.index'))->with('success', 'Data Bantuan Berhasil Disimpan.');
     }
 
@@ -47,7 +48,11 @@ class BantuanController extends Controller
 
     public function destroy(Bantuan $bantuan)
     {
-        $bantuan->delete();
-        return redirect(route('bantuan.index'))->with('success', 'Data Bantuan Berhasil Dihapus.');
+        $check = SubBantuan::where('bantuan_id', $bantuan->id)->count();
+        if ($check === 0) {
+            $bantuan->delete();
+            return redirect(route('bantuan.index'))->with('success', 'Data Bantuan Berhasil Dihapus.');
+        }
+        return redirect(route('bantuan.index'))->with("warning", "Maaf, Data Tidak Dapat Dihapus! Data Bantuan ($bantuan->bantuan) Masih Tersedia Pada Data Sub Bantuan!");
     }
 }

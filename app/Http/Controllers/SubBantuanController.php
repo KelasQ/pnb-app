@@ -31,7 +31,7 @@ class SubBantuanController extends Controller
     {
         SubBantuan::create($request->validate([
             'bantuan_id' => 'required',
-            'sub_bantuan'  =>  'required'
+            'sub_bantuan'  =>  'required|unique:sub_bantuan,sub_bantuan'
         ]));
         return redirect(route('sub-bantuan.index'))->with('success', 'Data Sub Bantuan Berhasil Disimpan.');
     }

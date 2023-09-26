@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\User;
 
 class RoleController extends Controller
 {
@@ -51,7 +52,11 @@ class RoleController extends Controller
 
     public function destroy(Role $role)
     {
-        $role->delete();
-        return redirect(route('role.index'))->with('success', 'Data Role Berhasil Dihapus.');
+        $check = User::where('role_id', $role->id)->count();
+        if ($check === 0) {
+            $role->delete();
+            return redirect(route('role.index'))->with('success', 'Data Role Berhasil Dihapus.');
+        }
+        return redirect(route('role.index'))->with("warning", "Maaf, Data Tidak Dapat Dihapus! Data Role ($role->role) Masih Tersedia Pada Data Users!");
     }
 }
