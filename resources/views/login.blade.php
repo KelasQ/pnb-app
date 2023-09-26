@@ -37,21 +37,36 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="m-sm-3">
-                                        <form action="{{ url('login') }}" method="post">
+                                        <form action="login" method="post">
                                             @csrf
                                             <div class="mb-3">
-                                                <label class="username">Username</label>
-                                                <input class="form-control form-control-lg" type="text"
-                                                    name="username" placeholder="Masukkan Username Anda" />
+                                                <label class="email">Email</label>
+                                                <input
+                                                    class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                                    type="text" name="email" placeholder="Masukkan Email Anda"
+                                                    value="{{ old('email') }}" />
+                                                @error('email')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <div class="mb-3">
                                                 <label class="password">Password</label>
-                                                <input class="form-control form-control-lg" type="password"
-                                                    name="password" placeholder="Masukan Password Anda" />
+                                                <input
+                                                    class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                                    type="password" name="password"
+                                                    placeholder="Masukan Password Anda" />
+                                                @error('password')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <div class="d-grid gap-2 mt-3">
-                                                <a href="dashboard-default.html" class="btn btn-lg btn-primary"><i
-                                                        class="align-middle" data-feather="log-in"></i> Login</a>
+                                                <button type="submit" class="btn btn-lg btn-primary">
+                                                    <i class="align-middle" data-feather="log-in"></i> Login
+                                                </button>
                                             </div>
                                         </form>
                                     </div>

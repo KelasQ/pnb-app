@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\KaryawanController;
@@ -12,18 +13,26 @@ use App\Http\Controllers\UserController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
-Route::get(RouteServiceProvider::HOME, fn () => view('dashboard'));
-Route::get('login', fn () => view('login'));
+Route::middleware('guest')->group(function () {
+    Route::get('login', [AuthController::class, 'index']);
+    Route::post('login', [AuthController::class, 'login']);
+});
 
-Route::resource('role', RoleController::class);
-Route::resource('user', UserController::class);
-Route::resource('karyawan', KaryawanController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/', fn () => view('dashboard'));
 
-Route::resource('klaster', KlasterController::class);
-Route::resource('sub-klaster', SubKlasterController::class);
+    Route::resource('role', RoleController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('karyawan', KaryawanController::class);
 
-Route::resource('bantuan', BantuanController::class);
-Route::resource('sub-bantuan', SubBantuanController::class);
+    Route::resource('klaster', KlasterController::class);
+    Route::resource('sub-klaster', SubKlasterController::class);
 
-Route::resource('layanan', LayananController::class);
-Route::resource('case', CaseController::class);
+    Route::resource('bantuan', BantuanController::class);
+    Route::resource('sub-bantuan', SubBantuanController::class);
+
+    Route::resource('layanan', LayananController::class);
+    Route::resource('case', CaseController::class);
+
+    Route::get('logout', [AuthController::class, 'logout']);
+});
