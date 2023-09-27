@@ -6,6 +6,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {

@@ -17,7 +17,7 @@
                     <a class="dropdown-item" href=""><i class="align-middle me-1" data-feather="user"></i>
                         Profile</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout">
+                    <a class="dropdown-item" href="{{ url('logout') }}">
                         <i class="align-middle" data-feather="log-out"></i> Logout
                     </a>
                 </div>

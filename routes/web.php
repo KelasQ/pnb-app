@@ -21,8 +21,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', fn () => view('dashboard'));
 
-    Route::resource('role', RoleController::class);
-    Route::resource('user', UserController::class);
+    Route::resource('role', RoleController::class)->middleware('adminAccess:Admin');
+    Route::resource('user', UserController::class)->middleware('adminAccess:Admin');
     Route::resource('karyawan', KaryawanController::class);
 
     Route::resource('klaster', KlasterController::class);

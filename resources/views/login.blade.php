@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="m-sm-3">
-                                        <form action="login" method="post">
+                                        <form action="{{ url('login') }}" method="post">
                                             @csrf
                                             <div class="mb-3">
                                                 <label class="email">Email</label>
