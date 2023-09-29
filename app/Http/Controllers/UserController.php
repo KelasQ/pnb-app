@@ -69,15 +69,13 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        if ($request->email === $user->email) $validasi = 'required|email';
-        if ($request->username === $user->username) $validasi = 'required|min:5';
         $request->validate([
             'role_id'      =>  'required',
             'nama'         =>  'required',
-            'email'        =>  $validasi,
+            'email'        =>  'required|email',
             'telp'         =>  'required',
             'foto'         =>  'image|mimes:jpeg,jpg,png|max:2048',
-            'username'     =>  $validasi,
+            'username'     =>  'required|min:5',
         ]);
 
         if ($request->hasFile('foto')) {

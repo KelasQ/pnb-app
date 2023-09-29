@@ -20,6 +20,6 @@ class AdminAccess
         if (Auth::user()->role->role == $role) {
             return $next($request);
         }
-        return response()->json('Mau Ngapain Om!');
+        return redirect('/');
     }
 }

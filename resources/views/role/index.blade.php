@@ -56,3 +56,27 @@
         </div>
     </div>
 @endsection
+@section('script')
+    {{-- <script>
+        $(document).ready(function() {
+            loadData();
+        });
+
+        function loadData() {
+            $('.dataTables').DataTable({
+                proccessing: true,
+                pagination: true,
+                responsive: true,
+                serverSide: true,
+                searching: true,
+                ordering: false,
+                ajax: {
+                    url: "{{ route('role.serverSide') }}"
+                },
+                columns: [data: 'no', name: 'no'],
+                columns: [data: 'role', name: 'role'],
+                columns: [data: 'action', name: 'action'],
+            });
+        }
+    </script>
+@endsection --}}

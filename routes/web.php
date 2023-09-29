@@ -23,16 +23,14 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('role', RoleController::class)->middleware('adminAccess:Admin');
     Route::resource('user', UserController::class)->middleware('adminAccess:Admin');
-    Route::resource('karyawan', KaryawanController::class);
 
-    Route::resource('klaster', KlasterController::class);
-    Route::resource('sub-klaster', SubKlasterController::class);
-
-    Route::resource('bantuan', BantuanController::class);
-    Route::resource('sub-bantuan', SubBantuanController::class);
-
-    Route::resource('layanan', LayananController::class);
-    Route::resource('case', CaseController::class);
+    Route::resource('karyawan', KaryawanController::class)->middleware('adminAccess:Pokja 3');
+    Route::resource('klaster', KlasterController::class)->middleware('adminAccess:Admin');
+    Route::resource('sub-klaster', SubKlasterController::class)->middleware('adminAccess:Admin');
+    Route::resource('bantuan', BantuanController::class)->middleware('adminAccess:Admin');
+    Route::resource('sub-bantuan', SubBantuanController::class)->middleware('adminAccess:Admin');
+    Route::resource('layanan', LayananController::class)->middleware('adminAccess:Admin');
+    Route::resource('case', CaseController::class)->middleware('adminAccess:Admin');
 
     Route::get('logout', [AuthController::class, 'logout']);
 });
