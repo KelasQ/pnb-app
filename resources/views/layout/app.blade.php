@@ -83,7 +83,7 @@
     {{-- <script src="{{ url('js/jquery-3.7.1.min.js') }}"></script> --}}
     <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ url('js/app.js') }}"></script>
-    @yield('script')
+    @stack('script')
     <script>
         $('.dataTable').DataTable({
             // responsive: true,

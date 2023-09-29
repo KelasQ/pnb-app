@@ -32,5 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('layanan', LayananController::class)->middleware('adminAccess:Admin');
     Route::resource('case', CaseController::class)->middleware('adminAccess:Admin');
 
+    Route::get('profil', [UserController::class, 'profil'])->name('profil')->middleware('auth');
+    Route::get('edit-profil/{id}/edit', [UserController::class, 'editProfil'])->name('edit-profil')->middleware('auth');
+    Route::post('update-profil', [UserController::class, 'updateProfil'])->name('update-profil')->middleware('auth');
+    Route::get('edit-password/{id}/edit', [UserController::class, 'editPassword'])->name('edit-password')->middleware('auth');
+    Route::post('update-password', [UserController::class, 'updatePassword'])->name('update-password')->middleware('auth');
+
     Route::get('logout', [AuthController::class, 'logout']);
 });
