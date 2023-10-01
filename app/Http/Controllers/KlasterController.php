@@ -14,7 +14,7 @@ class KlasterController extends Controller
     {
         return view('klaster.index', [
             'title'     =>  'Data Klaster',
-            'klasters'  =>  Klaster::orderBy('id', 'DESC')->paginate(2)
+            'klasters'  =>  Klaster::orderBy('id', 'DESC')->paginate(20)
         ]);
     }
 

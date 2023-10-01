@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kasus;
+use App\Models\Klaster;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -50,5 +51,12 @@ class CaseController extends Controller
     {
         $case->delete();
         return redirect(route('case.index'))->with('success', 'Data Kasus Berhasil Dihapus.');
+    }
+
+    public function getDataKasus(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            return response()->json(Kasus::find($id));
+        }
     }
 }

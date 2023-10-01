@@ -11,9 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <link class="js-stylesheet" href="{{ url('css/light.css') }}" rel="stylesheet">
+    <link class="js-stylesheet" href="{{ asset('css/light.css') }}" rel="stylesheet">
     {{-- <script src="js/settings.js"></script> --}}
-    <link rel="stylesheet" href="{{ url('css/sweetalert2.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 </head>
 
 <body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
@@ -80,9 +82,11 @@
         </div>
     </div>
 
-    {{-- <script src="{{ url('js/jquery-3.7.1.min.js') }}"></script> --}}
-    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ url('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     @stack('script')
     <script>
         $('.dataTable').DataTable({

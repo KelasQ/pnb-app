@@ -32,7 +32,7 @@
                     data-bs-parent="#sidebar">
                     @if (Str::lower(Auth::user()->role->role) === 'pokja 1')
                         <li class="sidebar-item{{ Request::is('penerima-bantuan') ? ' active' : '' }}"><a
-                                class="sidebar-link" href="{{ url('penerima-bantuan') }}">Penerima Bantuan</a>
+                                class="sidebar-link" href="{{ route('penerima-bantuan.index') }}">Penerima Bantuan</a>
                         </li>
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'pokja 2')
@@ -69,6 +69,9 @@
                         </li>
                         <li class="sidebar-item{{ Request::is('case') ? ' active' : '' }}"><a class="sidebar-link"
                                 href="{{ route('case.index') }}">Data Kasus</a>
+                        </li>
+                        <li class="sidebar-item{{ Request::is('layanan') ? ' active' : '' }}"><a class="sidebar-link"
+                                href="{{ route('layanan.index') }}">Data Layanan</a>
                         </li>
                         <li class="sidebar-item{{ Request::is('ska') ? ' active' : '' }}"><a class="sidebar-link"
                                 href="{{ url('ska') }}">Data SKA</a>

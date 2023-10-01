@@ -11,7 +11,7 @@ class SubKlasterController extends Controller
 {
     public function index()
     {
-        $sub_klaster = SubKlaster::orderBy('id', 'DESC')->paginate(20);
+        $sub_klaster = SubKlaster::orderBy('id', 'DESC')->paginate(10);
         return view('sub_klaster.index', [
             'title'     =>  'Data Klaster',
             'sub_klasters'  => $sub_klaster
@@ -61,5 +61,13 @@ class SubKlasterController extends Controller
     {
         $subKlaster->delete();
         return redirect(route('sub-klaster.index'))->with('success', 'Data Sub Klaster Berhasil Dihapus.');
+    }
+
+    public function getDataSubKlaster(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = SubKlaster::where('klaster_id', $request->id)->get();
+            return response()->json($data);
+        }
     }
 }

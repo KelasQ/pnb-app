@@ -72,11 +72,10 @@ class KaryawanController extends Controller
 
     public function update(Request $request, Karyawan $karyawan)
     {
-        if ($request->email === $karyawan->email) $validasi = 'required|email';
         $request->validate([
             'nik'     =>  'required',
             'nama'    =>  'required',
-            'email'   =>  $validasi,
+            'email'   =>  'required|email',
             'telp'    =>  'required',
             'jabatan' =>  'required',
             'foto'    =>  'image|mimes:jpeg,jpg,png|max:2048',
