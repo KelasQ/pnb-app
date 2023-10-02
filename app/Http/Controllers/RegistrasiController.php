@@ -126,7 +126,22 @@ class RegistrasiController extends Controller
     public function show(string $id)
     {
         $data = Peserta::find($id);
-        dd($data);
+        $provinsi = DB::table('wilayah')->where('kode', $data->provinsi_kode)->get();
+        $kota = DB::table('wilayah')->where('kode', $data->kota_kode)->get();
+        $kecamatan = DB::table('wilayah')->where('kode', $data->kecamatan_kode)->get();
+        $kelurahan = DB::table('wilayah')->where('kode', $data->kelurahan_kode)->get();
+
+        $statusTerimaBantuan = DB::table('penerima_bantuan')->where('peserta_id', $id)->count();
+
+        return view('penerima_bantuan.show', [
+            'title'   =>  'Detail Data Registrasi Peserta',
+            'data'    =>  $data,
+            'provinsi' => $provinsi,
+            'kota' => $kota,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
+            'status_bantuan' => $statusTerimaBantuan,
+        ]);
     }
 
     public function edit(string $id)

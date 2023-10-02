@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            Form Registrasi Data Penerima Bantuan
+                            Form Registrasi Peserta Penerima Bantuan
                         </div>
                         <div class="float-end">
                             <a href="{{ route('peserta.index') }}" class="btn btn-primary btn-sm"><i class="align-middle"

@@ -16,6 +16,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    @stack('style')
 </head>
 
 <body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">

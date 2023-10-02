@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class)->middleware('access:Admin');
 
     Route::resource('peserta', RegistrasiController::class)->middleware('access:Pokja 1');
+    Route::resource('penerima-bantuan', PenerimaBantuanController::class)->middleware('access:Pokja 1');
 
     Route::resource('karyawan', KaryawanController::class)->middleware('access:Pokja 3');
     Route::resource('klaster', KlasterController::class)->middleware('access:Admin');
