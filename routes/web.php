@@ -7,6 +7,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KlasterController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PenerimaBantuanController;
+use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubBantuanController;
 use App\Http\Controllers\SubKlasterController;
@@ -24,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('role', RoleController::class)->middleware('access:Admin');
     Route::resource('user', UserController::class)->middleware('access:Admin');
 
-    Route::resource('penerima-bantuan', PenerimaBantuanController::class)->middleware('access:Pokja 1');
+    Route::resource('peserta', RegistrasiController::class)->middleware('access:Pokja 1');
 
     Route::resource('karyawan', KaryawanController::class)->middleware('access:Pokja 3');
     Route::resource('klaster', KlasterController::class)->middleware('access:Admin');
@@ -40,11 +41,11 @@ Route::middleware('auth')->group(function () {
     Route::get('edit-password/{id}/edit', [UserController::class, 'editPassword'])->name('edit-password')->middleware('auth');
     Route::post('update-password', [UserController::class, 'updatePassword'])->name('update-password')->middleware('auth');
 
+    Route::get('getDataKasus/{id}', [CaseController::class, 'getDataKasus']);
+    Route::get('getDataSubKlaster', [SubKlasterController::class, 'getDataSubKlaster']);
+    Route::post('getDataKabupaten', [RegistrasiController::class, 'getDataKabupaten']);
+    Route::post('getDataKecamatan', [RegistrasiController::class, 'getDataKecamatan']);
+    Route::post('getDataKelurahan', [RegistrasiController::class, 'getDataKelurahan']);
+
     Route::get('logout', [AuthController::class, 'logout']);
 });
-
-Route::get('getDataKasus/{id}', [CaseController::class, 'getDataKasus']);
-Route::get('getDataSubKlaster', [SubKlasterController::class, 'getDataSubKlaster']);
-Route::get('getDataKabupaten', [PenerimaBantuanController::class, 'getDataKabupaten']);
-Route::get('getDataKecamatan', [PenerimaBantuanController::class, 'getDataKecamatan']);
-Route::get('getDataKelurahan', [PenerimaBantuanController::class, 'getDataKelurahan']);

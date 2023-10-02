@@ -11,8 +11,8 @@
                             Form Update Data Penerima Bantuan
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('penerima-bantuan.index') }}" class="btn btn-primary btn-sm"><i
-                                    class="align-middle" data-feather="arrow-left-circle"></i> Kembali</a>
+                            <a href="{{ route('peserta.index') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                                    data-feather="arrow-left-circle"></i> Kembali</a>
                         </div>
                     </div>
                     <div class="card-body">
