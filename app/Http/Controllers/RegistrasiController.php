@@ -8,6 +8,7 @@ use App\Models\Kasus;
 use App\Models\Klaster;
 use App\Models\Layanan;
 use App\Models\Peserta;
+use App\Models\SubKlaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -147,12 +148,105 @@ class RegistrasiController extends Controller
     public function edit(string $id)
     {
         $data = Peserta::find($id);
-        dd($data);
+        $sub_klaster = SubKlaster::where('id', $data->sub_klaster_id)->get();
+        return view('penerima_bantuan.edit', [
+            'title'   =>  'Edit Data Registrasi Peserta',
+            'data'    =>  $data,
+            'services'  =>  Layanan::all(),
+            'employees' =>  Karyawan::all(),
+            'cases'     =>  Kasus::all(),
+            'klasters'  =>  Klaster::all(),
+            'sub_klaster'  =>  $sub_klaster,
+            'bantuans'  =>  Bantuan::all(),
+            'provinsi'  => DB::select("SELECT * FROM wilayah WHERE kode = LEFT(kode,2) ORDER BY nama"),
+            'kota'      => DB::table('wilayah')->where('kode', $data->kota_kode)->get(),
+            'kecamatan'      => DB::table('wilayah')->where('kode', $data->kecamatan_kode)->get(),
+            'kelurahan'      => DB::table('wilayah')->where('kode', $data->kelurahan_kode)->get(),
+        ]);
     }
 
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'layanan_id'                =>  'required',
+            'karyawan_id'                =>  'required',
+            'tgl_asesmen'               =>  'required',
+            'kasus_id'                  =>  'required',
+            'klaster_id'                =>  'required',
+            'sub_klaster_id'            =>  'required',
+            'provinsi_kode'             =>  'required',
+            'kota_kode'                 =>  'required',
+            'kecamatan_kode'            =>  'required',
+            'kelurahan_kode'            =>  'required',
+            'alamat_ktp'                =>  'required',
+            'alamat_domisili'           =>  'required',
+            'nama_ppks'                 =>  'required',
+            'nik'                       =>  'required',
+            'no_kk'                     =>  'required',
+            'tempat_lahir'              =>  'required',
+            'tgl_lahir'                 =>  'required',
+            'jenis_kelamin'             =>  'required',
+            'agama'                     =>  'required',
+            'pendidikan'                =>  'required',
+            'pekerjaan'                 =>  'required',
+            'penghasilan_per_bulan'     =>  'required',
+            'nama_ibu'                  =>  'required',
+            'nama_ayah'                 =>  'required',
+            'pekerjaan_org_tua'         =>  'required',
+            'no_hp_wali'                =>  'required',
+            'dtiks'                     =>  'required',
+            'bantuan_pernah_diterima'   =>  'required',
+            'hasil_asesmen'             =>  'required',
+            'rekomendasi'               =>  'required',
+            'intervensi'                =>  'required',
+            // 'tgl_pelayanan'             =>  'required',
+            // 'foto_ktp'                  =>  'required|image|mimes:jpeg,jpg,png|max:2048',
+            // 'foto_diri'                 =>  'required|image|mimes:jpeg,jpg,png|max:2048',
+            // 'foto_kk'                   =>  'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        $data = Peserta::findOrFail($id);
+
+        $data->update([
+            'layanan_id'                =>  $request->layanan_id,
+            'karyawan_id'               =>  $request->karyawan_id,
+            'tgl_asesmen'               =>  date('Y-m-d', strtotime($request->tgl_asesmen)),
+            'kasus_id'                  =>  $request->kasus_id,
+            'ket_kasus'                 =>  $request->ket_kasus,
+            'klaster_id'                =>  $request->klaster_id,
+            'sub_klaster_id'            =>  $request->sub_klaster_id,
+            'provinsi_kode'             =>  $request->provinsi_kode,
+            'kota_kode'                 =>  $request->kota_kode,
+            'kecamatan_kode'            =>  $request->kecamatan_kode,
+            'kelurahan_kode'            =>  $request->kelurahan_kode,
+            'alamat_ktp'                =>  $request->alamat_ktp,
+            'alamat_domisili'           =>  $request->alamat_domisili,
+            'nama_ppks'                 =>  $request->nama_ppks,
+            'nik'                       =>  $request->nik,
+            'no_kk'                     =>  $request->no_kk,
+            'tempat_lahir'              =>  $request->tempat_lahir,
+            'tgl_lahir'                 =>  date('Y-m-d', strtotime($request->tgl_lahir)),
+            'jenis_kelamin'             =>  $request->jenis_kelamin,
+            'agama'                     =>  $request->agama,
+            'pendidikan'                =>  $request->pendidikan,
+            'pekerjaan'                 =>  $request->pekerjaan,
+            'penghasilan_per_bulan'     =>  $request->penghasilan_per_bulan,
+            'nama_ibu'                  =>  $request->nama_ibu,
+            'nama_ayah'                 =>  $request->nama_ayah,
+            'pekerjaan_org_tua'         =>  $request->pekerjaan_org_tua,
+            'no_hp_wali'                =>  $request->no_hp_wali,
+            'dtiks'                     =>  $request->dtiks,
+            'bantuan_pernah_diterima'   =>  $request->bantuan_pernah_diterima,
+            'hasil_asesmen'             =>  $request->hasil_asesmen,
+            'rekomendasi'               =>  $request->rekomendasi,
+            'intervensi'                =>  $request->intervensi,
+            // 'tgl_pelayanan'             =>  date('Y-m-d', strtotime($request->tgl_pelayanan)),
+            // 'foto_ktp'                  =>  $request->foto_ktp->hashName(),
+            // 'foto_diri'                 =>  $request->foto_diri->hashName(),
+            // 'foto_kk'                   =>  $request->foto_kk->hashName(),
+        ]);
+
+        return redirect(route('peserta.index'))->with('success', 'Data Registrasi Berhasil Diupdate.');
     }
 
     public function destroy(string $id)
