@@ -18,7 +18,7 @@ class RegistrasiController extends Controller
     public function index()
     {
         $data_peserta = Peserta::orderBy('id', 'DESC')->paginate(20);
-        return view('penerima_bantuan.index', [
+        return view('registrasi.index', [
             'title'     =>  'Data Penerima Bantuan',
             'registrations'  => $data_peserta
         ]);
@@ -26,7 +26,7 @@ class RegistrasiController extends Controller
 
     public function create()
     {
-        return view('penerima_bantuan.create', [
+        return view('registrasi.create', [
             'title'     =>  'Input Data Penerima Bantuan',
             'services'  =>  Layanan::all(),
             'employees' =>  Karyawan::all(),
@@ -132,16 +132,13 @@ class RegistrasiController extends Controller
         $kecamatan = DB::table('wilayah')->where('kode', $data->kecamatan_kode)->get();
         $kelurahan = DB::table('wilayah')->where('kode', $data->kelurahan_kode)->get();
 
-        $statusTerimaBantuan = DB::table('penerima_bantuan')->where('peserta_id', $id)->count();
-
-        return view('penerima_bantuan.show', [
+        return view('registrasi.show', [
             'title'   =>  'Detail Data Registrasi Peserta',
             'data'    =>  $data,
             'provinsi' => $provinsi,
             'kota' => $kota,
             'kecamatan' => $kecamatan,
             'kelurahan' => $kelurahan,
-            'status_bantuan' => $statusTerimaBantuan,
         ]);
     }
 
@@ -149,7 +146,7 @@ class RegistrasiController extends Controller
     {
         $data = Peserta::find($id);
         $sub_klaster = SubKlaster::where('id', $data->sub_klaster_id)->get();
-        return view('penerima_bantuan.edit', [
+        return view('registrasi.edit', [
             'title'   =>  'Edit Data Registrasi Peserta',
             'data'    =>  $data,
             'services'  =>  Layanan::all(),

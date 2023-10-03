@@ -23,7 +23,7 @@
                     </ul>
                 </li>
             @endif
-            <li class="sidebar-item{{ Request::is('peserta', 'tindakan') ? ' active' : '' }}">
+            <li class="sidebar-item{{ Request::is('registrasi', 'tindakan') ? ' active' : '' }}">
                 <a data-bs-target="#masterDataPenerimaBantuan" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="check-square"></i> <span
                         class="align-middle">Registrasi</span>
@@ -31,8 +31,8 @@
                 <ul id="masterDataPenerimaBantuan" class="sidebar-dropdown list-unstyled collapse "
                     data-bs-parent="#sidebar">
                     @if (Str::lower(Auth::user()->role->role) === 'pokja 1')
-                        <li class="sidebar-item{{ Request::is('peserta') ? ' active' : '' }}"><a class="sidebar-link"
-                                href="{{ route('peserta.index') }}">Penerima Bantuan</a>
+                        <li class="sidebar-item{{ Request::is('registrasi') ? ' active' : '' }}"><a class="sidebar-link"
+                                href="{{ route('registrasi.index') }}">Penerima Bantuan</a>
                         </li>
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'pokja 2')

@@ -7,12 +7,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            Data Peserta Penerima Bantuan
+                            Data Registrasi Peserta Penerima Bantuan
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('peserta.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                            <a href="{{ route('registrasi.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="plus-circle"></i>
-                                Input Data Penerima Bantuan</a>
+                                Input Data Registrasi Peserta Penerima Bantuan</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -25,24 +25,31 @@
                                         <th>Nama PPKS</th>
                                         <th>Tgl Pelayan</th>
                                         <th>Tgl Asesment</th>
+                                        <th>Data Bantuan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($registrations as $peserta)
+                                    @foreach ($registrations as $registrasi)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $peserta->nik }}</td>
-                                            <td>{{ $peserta->nama_ppks }}</td>
-                                            <td>{{ date('d F Y', strtotime($peserta->tgl_pelayanan)) }}</td>
-                                            <td>{{ date('d F Y', strtotime($peserta->tgl_asesmen)) }}</td>
+                                            <td>{{ $registrasi->nik }}</td>
+                                            <td>{{ $registrasi->nama_ppks }}</td>
+                                            <td>{{ date('d F Y', strtotime($registrasi->tgl_pelayanan)) }}</td>
+                                            <td>{{ date('d F Y', strtotime($registrasi->tgl_asesmen)) }}</td>
                                             <td>
-                                                <form action="{{ route('peserta.destroy', $peserta->id) }}" method="post"
-                                                    style="display: inline;">
-                                                    <a href="{{ route('peserta.show', $peserta->id) }}"
+                                                <a href="{{ route('data-bantuan', $registrasi->id) }}"
+                                                    class="btn btn-success btn-sm">
+                                                    <i class="align-middle" data-feather="check-circle"></i> Data Bantuan
+                                                </a>
+                                            </td>
+                                            <td style="width: 110px;">
+                                                <form action="{{ route('registrasi.destroy', $registrasi->id) }}"
+                                                    method="post" style="display: inline;">
+                                                    <a href="{{ route('registrasi.show', $registrasi->id) }}"
                                                         class="btn btn-info btn-sm" title="Show Data"><i
                                                             class="align-middle" data-feather="eye"></i></a>
-                                                    <a href="{{ route('peserta.edit', $peserta->id) }}"
+                                                    <a href="{{ route('registrasi.edit', $registrasi->id) }}"
                                                         class="btn btn-warning btn-sm" title="Edit Data"><i
                                                             class="align-middle" data-feather="edit"></i></a>
                                                     @method('DELETE')

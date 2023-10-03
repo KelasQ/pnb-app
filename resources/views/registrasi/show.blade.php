@@ -20,60 +20,11 @@
                             Detail Data Registrasi Peserta Penerima Bantuan
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('peserta.index') }}" class="btn btn-primary btn-sm"><i class="align-middle"
+                            <a href="{{ route('registrasi.index') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="arrow-left-circle"></i> Kembali</a>
                         </div>
                     </div>
                     <div class="card-body">
-                        {{-- {{ dd($status_bantuan) }} --}}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <th>Status Penerimaan Bantuan</th>
-                                        <th>Action</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                @if ($status_bantuan === 0)
-                                                    <span class="text-danger">Peserta Belum Menerima Bantuan</span>
-                                                @else
-                                                    <span class="text-success">Peserta Telah Menerima Bantuan</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($status_bantuan === 0)
-                                                    <a href="{{ route('penerima-bantuan.create') }}"
-                                                        class="btn btn-primary btn-sm"><i class="align-middle"
-                                                            data-feather="plus-circle"></i> Input Data Bantuan</a>
-                                                @else
-                                                    <form action="{{ route('penerima-bantuan.destroy', $data->id) }}"
-                                                        method="post" style="display: inline;">
-                                                        <a href="{{ route('penerima-bantuan.show', $data->id) }}"
-                                                            class="btn btn-info btn-sm" title="Show Data"><i
-                                                                class="align-middle" data-feather="eye"></i> Lihat Data
-                                                            Bantuan</a>
-                                                        <a href="{{ route('penerima-bantuan.edit', $data->id) }}"
-                                                            class="btn btn-warning btn-sm" title="Edit Data"><i
-                                                                class="align-middle" data-feather="edit"></i> Edit Data
-                                                            Bantuan</a>
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type="submit" title="Hapus Data"
-                                                            class="btn btn-danger btn-sm btnHapusData"
-                                                            onclick="return confirm('Yakin Ingin Dihapus ?')"><i
-                                                                class="align-middle" data-feather="trash-2"></i> Hapus Data
-                                                            Bantuan</button>
-                                                    </form>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <hr>
                         <div class="row">
                             <div class="col-md-4">
                                 <table class="table table-hover dataPeserta">

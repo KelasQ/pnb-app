@@ -25,8 +25,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('role', RoleController::class)->middleware('access:Admin');
     Route::resource('user', UserController::class)->middleware('access:Admin');
 
-    Route::resource('peserta', RegistrasiController::class)->middleware('access:Pokja 1');
-    Route::resource('penerima-bantuan', PenerimaBantuanController::class)->middleware('access:Pokja 1');
+    Route::resource('registrasi', RegistrasiController::class)->middleware('access:Pokja 1');
+    Route::get('data-bantuan/{id}', [PenerimaBantuanController::class, 'index'])->name('data-bantuan')->middleware('access:Pokja 1');
+    Route::get('input-data-bantuan/{id}', [PenerimaBantuanController::class, 'create'])->name('input-data-bantuan')->middleware('access:Pokja 1');
+    Route::post('store-data-bantuan', [PenerimaBantuanController::class, 'store'])->name('store-data-bantuan')->middleware('access:Pokja 1');
+    Route::get('edit-data-bantuan/{id}', [PenerimaBantuanController::class, 'edit'])->name('edit-data-bantuan')->middleware('access:Pokja 1');
+    Route::put('update-data-bantuan/{id}', [PenerimaBantuanController::class, 'update'])->name('update-data-bantuan')->middleware('access:Pokja 1');
+    Route::get('show-data-bantuan/{id}', [PenerimaBantuanController::class, 'show'])->name('show-data-bantuan')->middleware('access:Pokja 1');
+    Route::delete('destroy-data-bantuan/{id}', [PenerimaBantuanController::class, 'destroy'])->name('destroy-data-bantuan')->middleware('access:Pokja 1');
 
     Route::resource('karyawan', KaryawanController::class)->middleware('access:Pokja 3');
     Route::resource('klaster', KlasterController::class)->middleware('access:Admin');
