@@ -9,6 +9,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PenerimaBantuanController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SKAController;
 use App\Http\Controllers\SubBantuanController;
 use App\Http\Controllers\SubKlasterController;
 use App\Http\Controllers\UserController;
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('sub-bantuan', SubBantuanController::class)->middleware('access:Admin');
     Route::resource('layanan', LayananController::class)->middleware('access:Admin');
     Route::resource('case', CaseController::class)->middleware('access:Admin');
+    Route::resource('ska', SKAController::class)->middleware('access:Admin');
 
     Route::get('profil', [UserController::class, 'profil'])->name('profil')->middleware('auth');
     Route::get('edit-profil/{id}/edit', [UserController::class, 'editProfil'])->name('edit-profil')->middleware('auth');

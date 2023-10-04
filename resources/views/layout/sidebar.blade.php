@@ -63,10 +63,10 @@
                         <li class="sidebar-item{{ Request::is('bantuan') ? ' active' : '' }}"><a class="sidebar-link"
                                 href="{{ route('bantuan.index') }}">Data Bantuan</a>
                         </li>
-                        <li class="sidebar-item{{ Request::is('sub-bantuan') ? ' active' : '' }}"><a
+                        {{-- <li class="sidebar-item{{ Request::is('sub-bantuan') ? ' active' : '' }}"><a
                                 class="sidebar-link" href="{{ route('sub-bantuan.index') }}">Data Sub
                                 Bantuan</a>
-                        </li>
+                        </li> --}}
                         <li class="sidebar-item{{ Request::is('case') ? ' active' : '' }}"><a class="sidebar-link"
                                 href="{{ route('case.index') }}">Data Kasus</a>
                         </li>
@@ -74,7 +74,7 @@
                                 href="{{ route('layanan.index') }}">Data Layanan</a>
                         </li>
                         <li class="sidebar-item{{ Request::is('ska') ? ' active' : '' }}"><a class="sidebar-link"
-                                href="{{ url('ska') }}">Data SKA</a>
+                                href="{{ route('ska.index') }}">Data SKA</a>
                         </li>
                     @endif
                 </ul>
