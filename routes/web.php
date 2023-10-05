@@ -12,6 +12,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SKAController;
 use App\Http\Controllers\SubBantuanController;
 use App\Http\Controllers\SubKlasterController;
+use App\Http\Controllers\TindakanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::put('update-data-bantuan/{id}', [PenerimaBantuanController::class, 'update'])->name('update-data-bantuan')->middleware('access:Pokja 1');
     Route::get('show-data-bantuan/{id}', [PenerimaBantuanController::class, 'show'])->name('show-data-bantuan')->middleware('access:Pokja 1');
     Route::delete('destroy-data-bantuan/{id}', [PenerimaBantuanController::class, 'destroy'])->name('destroy-data-bantuan')->middleware('access:Pokja 1');
+
+    Route::resource('tindakan', TindakanController::class)->middleware('access:Pokja 2');
 
     Route::resource('karyawan', KaryawanController::class)->middleware('access:Pokja 3');
     Route::resource('klaster', KlasterController::class)->middleware('access:Admin');

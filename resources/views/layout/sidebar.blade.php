@@ -37,7 +37,7 @@
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'pokja 2')
                         <li class="sidebar-item{{ Request::is('tindakan') ? ' active' : '' }}"><a class="sidebar-link"
-                                href="{{ url('tindakan') }}">Layanan / Tindakan</a>
+                                href="{{ route('tindakan.index') }}">Layanan / Tindakan</a>
                         </li>
                     @endif
                 </ul>
