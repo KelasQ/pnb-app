@@ -26,56 +26,66 @@ class TindakanController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'peserta_id' => 'required',
-        //     'tindakan' => 'required',
-        //     'sub_layanan' => 'required',
-        //     'kategori_asrama' => 'required',
-        //     'nama_asrama' => 'required',
-        //     'kategori_intervensi' => 'required',
-        //     'deskripsi_layanan' => 'required',
-        //     'tgl_terminasi' => 'required',
-        //     'alasan_terminasi' => 'required',
-        //     'syarat_dan_ketentuan' => 'required',
-        //     'deskripsi_masalah' => 'required',
-        //     'deskripsi_hasil' => 'required',
-        //     'rencana_tindak_lanjut' => 'required',
-        //     'tgl_masuk' => 'required',
-        //     'tgl_keluar' => 'required',
-        // ]);
-        // $data = $request->syarat_dan_ketentuan;
-        // dd(implode(",", $data));
+        $request->validate([
+            'peserta_id' => 'required',
+            'tindakan' => 'required',
+            'deskripsi_masalah' => 'required',
+            'deskripsi_hasil' => 'required',
+            'rencana_tindak_lanjut' => 'required',
+        ]);
+
+        $request['syarat_dan_ketentuan'] = ($request->syarat_dan_ketentuan) ? implode(',', $request->syarat_dan_ketentuan) : NULL;
+        $request['tgl_terminasi'] = ($request->tgl_terminasi) ? date('Y-m-d', strtotime($request->tgl_terminasi)) : NULL;
+        $request['tgl_masuk'] = ($request->tgl_masuk) ? date('Y-m-d', strtotime($request->tgl_masuk)) : NULL;
+        $request['tgl_keluar'] = ($request->tgl_keluar) ? date('Y-m-d', strtotime($request->tgl_keluar)) : NULL;
+
+        Tindakan::create($request->all());
+
+        return redirect(route('tindakan.index'))->with('success', 'Data Tindakan Berhasil Disimpan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Tindakan $tindakan)
     {
-        //
+        return view('tindakan.show', [
+            'title' =>  'Detail Data Tindakan',
+            'data'  =>  $tindakan,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Tindakan $tindakan)
     {
-        //
+        $data = $tindakan;
+        return view('tindakan.edit', [
+            'title' =>  'Edit Data Tindakan',
+            'data'  =>  $data,
+            'peserta'   =>  Peserta::all(),
+            'items' => explode(',', $data->syarat_dan_ketentuan)
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Tindakan $tindakan)
     {
-        //
+        $request->validate([
+            'peserta_id' => 'required',
+            'tindakan' => 'required',
+            'deskripsi_masalah' => 'required',
+            'deskripsi_hasil' => 'required',
+            'rencana_tindak_lanjut' => 'required',
+        ]);
+
+        $request['syarat_dan_ketentuan'] = ($request->syarat_dan_ketentuan) ? implode(',', $request->syarat_dan_ketentuan) : NULL;
+        $request['tgl_terminasi'] = ($request->tgl_terminasi) ? date('Y-m-d', strtotime($request->tgl_terminasi)) : NULL;
+        $request['tgl_masuk'] = ($request->tgl_masuk) ? date('Y-m-d', strtotime($request->tgl_masuk)) : NULL;
+        $request['tgl_keluar'] = ($request->tgl_keluar) ? date('Y-m-d', strtotime($request->tgl_keluar)) : NULL;
+
+        $tindakan->update($request->all());
+
+        return redirect(route('tindakan.index'))->with('success', 'Data Tindakan Berhasil Diupdate.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Tindakan $tindakan)
     {
-        //
+        $tindakan->delete();
+        return redirect()->back()->with('success', 'Data Tindakan Berhasil Dihapus.');
     }
 }

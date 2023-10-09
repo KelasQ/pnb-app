@@ -22,7 +22,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Peserta</th>
-                                        <th>Tindakan</th>
+                                        <th>Jenis Tindakan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -32,9 +32,12 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->peserta->nama_ppks }}</td>
                                             <td>{{ $data->tindakan }}</td>
-                                            <td>
+                                            <td style="width: 110px;">
                                                 <form action="{{ route('tindakan.destroy', $data->id) }}" method="post"
                                                     style="display: inline;">
+                                                    <a href="{{ route('tindakan.show', $data->id) }}"
+                                                        class="btn btn-info btn-sm" title="Show Data"><i
+                                                            class="align-middle" data-feather="eye"></i></a>
                                                     <a href="{{ route('tindakan.edit', $data->id) }}"
                                                         class="btn btn-warning btn-sm" title="Edit Data"><i
                                                             class="align-middle" data-feather="edit"></i></a>

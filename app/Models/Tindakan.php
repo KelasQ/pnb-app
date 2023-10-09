@@ -14,7 +14,7 @@ class Tindakan extends Model
         'sub_layanan',
         'kategori_asrama',
         'nama_asrama',
-        'kategori_intervensi',
+        'intervensi',
         'deskripsi_layanan',
         'tgl_terminasi',
         'alasan_terminasi',
