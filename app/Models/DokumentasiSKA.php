@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SKA extends Model
+class DokumentasiSKA extends Model
 {
     use HasFactory;
 
-    protected $table = 'ska';
-    protected $fillable = [
-        'jenis_ska',
-        'deskripsi',
-    ];
+    protected $table = 'dokumentasi_ska';
+    protected $fillable = ['ska_id', 'foto_dokumentasi'];
 }

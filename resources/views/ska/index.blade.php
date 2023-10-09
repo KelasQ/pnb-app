@@ -22,6 +22,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Jenis SKA</th>
+                                        <th>Dokumentasi</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -31,6 +32,12 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $ska->jenis_ska }}</td>
                                             <td>
+                                                <a href="{{ route('dokumentasi-ska', $ska->id) }}"
+                                                    class="btn btn-success btn-sm"><i class="align-middle"
+                                                        data-feather="paperclip"></i>
+                                                    Dokumentasi</a>
+                                            </td>
+                                            <td style="width: 110px;">
                                                 <form action="{{ route('ska.destroy', $ska->id) }}" method="post"
                                                     style="display: inline;">
                                                     <a href="{{ route('ska.show', $ska->id) }}" class="btn btn-info btn-sm"

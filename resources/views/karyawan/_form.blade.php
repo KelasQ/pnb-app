@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-6">
-        <label for="nik">Nomor Induk Karyawan</label>
+        <label for="nik">Nomor Induk Pegawai</label>
         <input type="text" name="nik" id="nik" class="form-control mt-1 @error('nik') is-invalid @enderror"
-            placeholder="Nomor Induk Karyawan" value="{{ old('nik', $karyawan->nik) }}">
+            placeholder="Nomor Induk Pegawai" value="{{ old('nik', $karyawan->nik) }}">
         @error('nik')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -10,9 +10,9 @@
         @enderror
     </div>
     <div class="col-md-6">
-        <label for="nama">Nama Karyawan</label>
+        <label for="nama">Nama Pegawai</label>
         <input type="text" name="nama" id="nama"
-            class="form-control mt-1 @error('nama') is-invalid @enderror" placeholder="Nama Karyawan"
+            class="form-control mt-1 @error('nama') is-invalid @enderror" placeholder="Nama Pegawai"
             value="{{ old('nama', $karyawan->nama) }}">
         @error('nama')
             <div class="invalid-feedback">

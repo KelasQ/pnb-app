@@ -17,8 +17,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 offset-md-3">
-                                <form action="{{ route('store-data-bantuan') }}" method="post"
-                                    enctype="multipart/form-data">
+                                <form action="{{ route('store-data-bantuan') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="peserta_id" value="{{ $data->id }}">
                                     <div class="form-group">
@@ -85,23 +84,6 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="karyawan_id">Petugas Yg Menyerahkan</label>
-                                            <select name="karyawan_id" id="karyawan_id"
-                                                class="form-control select2 @error('karyawan_id') is-invalid @enderror">
-                                                <option value="">-- Pilih Petugas --</option>
-                                                @foreach ($karyawan as $karyawan)
-                                                    <option value="{{ $karyawan->id }}">{{ $karyawan->nama }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('karyawan_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-6">
                                             <label for="nominal_bantuan">Nominal Bantuan</label>
                                             <input type="number" name="nominal_bantuan" id="nominal_bantuan"
                                                 class="form-control @error('nominal_bantuan') is-invalid @enderror"
@@ -112,12 +94,18 @@
                                                 </div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="foto_dokumentasi">Foto Dokumentasi</label>
-                                            <input type="file" name="foto_dokumentasi" id="foto_dokumentasi"
-                                                class="form-control @error('foto_dokumentasi') is-invalid @enderror"
-                                                accept="image/png, image/jpeg, image/jpg">
-                                            @error('foto_dokumentasi')
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <label for="karyawan_id">Petugas Yg Menyerahkan</label>
+                                            <select name="karyawan_id" id="karyawan_id"
+                                                class="form-control select2 @error('karyawan_id') is-invalid @enderror">
+                                                <option value="">-- Pilih Petugas --</option>
+                                                @foreach ($karyawan as $karyawan)
+                                                    <option value="{{ $karyawan->id }}">{{ $karyawan->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('karyawan_id')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

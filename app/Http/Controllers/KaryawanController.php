@@ -11,7 +11,7 @@ class KaryawanController extends Controller
     public function index(Request $request)
     {
         return view('karyawan.index', [
-            'title'         =>  'Data Karyawan',
+            'title'         =>  'Data Pegawai',
             'karyawans'     =>  Karyawan::orderBy('id', 'DESC')->paginate(20)
         ]);
     }
@@ -21,7 +21,7 @@ class KaryawanController extends Controller
         return view('karyawan.create', [
             'karyawan'    =>  new Karyawan,
             'submit'      => 'Simpan',
-            'title'       => 'Tambah Data Karyawan'
+            'title'       => 'Tambah Data Pegawai'
         ]);
     }
 
@@ -50,21 +50,21 @@ class KaryawanController extends Controller
             'alamat'  =>  $request->alamat,
         ]);
 
-        return redirect(route('karyawan.index'))->with('success', 'Data Karyawan Berhasil Disimpan.');
+        return redirect(route('karyawan.index'))->with('success', 'Data Pegawai Berhasil Disimpan.');
     }
 
     public function show(Karyawan $karyawan)
     {
         return view('karyawan.show', [
             'karyawan'    =>  $karyawan,
-            'title'       => 'Detail Data Karyawan'
+            'title'       => 'Detail Data Pegawai'
         ]);
     }
 
     public function edit(Karyawan $karyawan)
     {
         return view('karyawan.edit', [
-            'title'     =>  'Update Data Karyawan',
+            'title'     =>  'Update Data Pegawai',
             'submit'    =>  'Update',
             'karyawan'  =>  $karyawan
         ]);
@@ -104,13 +104,13 @@ class KaryawanController extends Controller
                 'alamat'  =>  $request->alamat,
             ]);
         }
-        return redirect(route('karyawan.index'))->with('success', 'Data Karyawan Berhasil Diupdate.');
+        return redirect(route('karyawan.index'))->with('success', 'Data Pegawai Berhasil Diupdate.');
     }
 
     public function destroy(Karyawan $karyawan)
     {
         Storage::delete('karyawan/' . $karyawan->foto);
         $karyawan->delete();
-        return redirect(route('karyawan.index'))->with('success', 'Data Karyawan Berhasil Dihapus.');
+        return redirect(route('karyawan.index'))->with('success', 'Data Pegawai Berhasil Dihapus.');
     }
 }

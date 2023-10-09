@@ -55,16 +55,6 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <div class="form-group mt-2">
-                                        <label for="dokumentasi">Dokumentasi</label>
-                                        <input type="file" name="dokumentasi" id="dokumentasi"
-                                            class="form-control @error('dokumentasi') is-invalid @enderror">
-                                        @error('dokumentasi')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
                                     <div class="float-end mt-2">
                                         <button type="submit" class="btn btn-success"><i class="align-middle"
                                                 data-feather="save"></i> Update Data SKA</button>

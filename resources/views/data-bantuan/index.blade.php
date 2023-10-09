@@ -89,6 +89,7 @@
                                             <th>No</th>
                                             <th>Jenis Bantuan Yang Diterima</th>
                                             <th>Nominal Bantuan</th>
+                                            <th>Dokumentasi</th>
                                             <th>Action</th>
                                         </thead>
                                         <tbody>
@@ -98,6 +99,12 @@
                                                     <td>{{ $bantuan->bantuan }}</td>
                                                     <td>Rp. {{ number_format($bantuan->nominal_bantuan) }}</td>
                                                     <td>
+                                                        <a href="{{ route('dokumentasi-data-bantuan', $bantuan->id) }}"
+                                                            class="btn btn-success btn-sm"><i class="align-middle"
+                                                                data-feather="paperclip"></i>
+                                                            Dokumentasi</a>
+                                                    </td>
+                                                    <td style="width: 110px;">
                                                         <form action="{{ route('destroy-data-bantuan', $bantuan->id) }}"
                                                             method="post" style="display: inline;">
                                                             <a href="{{ route('show-data-bantuan', $bantuan->id) }}"

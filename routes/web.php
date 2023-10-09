@@ -36,6 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::get('show-data-bantuan/{id}', [PenerimaBantuanController::class, 'show'])->name('show-data-bantuan')->middleware('access:Pokja 1');
     Route::delete('destroy-data-bantuan/{id}', [PenerimaBantuanController::class, 'destroy'])->name('destroy-data-bantuan')->middleware('access:Pokja 1');
 
+    Route::get('dokumentasi-data-bantuan/{id}', [PenerimaBantuanController::class, 'dokumentasiDataBantuan'])->name('dokumentasi-data-bantuan')->middleware('access:Pokja 1');
+    Route::post('store-dokumentasi-bantuan', [PenerimaBantuanController::class, 'storeDokumentasiBantuan'])->name('store-dokumentasi-bantuan')->middleware('access:Pokja 1');
+    Route::delete('destroy-dokumentasi-penerima-bantuan/{id}', [PenerimaBantuanController::class, 'destoryDokumentasiBantuan'])->name('destroy-dokumentasi-penerima-bantuan')->middleware('access:Pokja 1');
+
+    Route::get('semua-data-bantuan', [PenerimaBantuanController::class, 'semuaDataBantuan'])->name('semua-data-bantuan')->middleware('access:Pokja 1');
+
     Route::resource('tindakan', TindakanController::class)->middleware('access:Pokja 2');
 
     Route::resource('karyawan', KaryawanController::class)->middleware('access:Pokja 3');
@@ -45,7 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('sub-bantuan', SubBantuanController::class)->middleware('access:Admin');
     Route::resource('layanan', LayananController::class)->middleware('access:Admin');
     Route::resource('case', CaseController::class)->middleware('access:Admin');
+
     Route::resource('ska', SKAController::class)->middleware('access:Admin');
+    Route::get('dokumentasi-ska/{id}', [SKAController::class, 'dokumentasiSKA'])->name('dokumentasi-ska')->middleware('access:Admin');
+    Route::post('store-dokumentasi-ska', [SKAController::class, 'storeDokumentasiSKA'])->name('store-dokumentasi-ska')->middleware('access:Admin');
+    Route::delete('destroy-dokumentasi-ska/{id}', [SKAController::class, 'destroyDokumentasiSKA'])->name('destroy-dokumentasi-ska')->middleware('access:Admin');
 
     Route::get('profil', [UserController::class, 'profil'])->name('profil')->middleware('auth');
     Route::get('edit-profil/{id}/edit', [UserController::class, 'editProfil'])->name('edit-profil')->middleware('auth');

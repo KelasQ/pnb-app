@@ -10,7 +10,7 @@
                             Detail Data Bantuan
                         </div>
                         <div class="float-end">
-                            <a href="{{ route('data-bantuan', $data->id) }}" class="btn btn-primary btn-sm"><i
+                            <a href="{{ route('data-bantuan', $data->peserta_id) }}" class="btn btn-primary btn-sm"><i
                                     class="align-middle" data-feather="arrow-left-circle"></i> Kembali</a>
                         </div>
                     </div>
@@ -56,13 +56,6 @@
                                         <td>
                                             <small>Petugas Yg Menyerahkan Bantuan</small><br>
                                             <strong>{{ $data->karyawan->nama }}</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <small>Foto Dokumentasi</small><br>
-                                            <img src="{{ asset('/storage/dokumentasi/peneriam_bantuan/' . $data->foto_dokumentasi) }}"
-                                                class="rounded" style="width: 200px">
                                         </td>
                                     </tr>
                                 </table>

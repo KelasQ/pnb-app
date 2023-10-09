@@ -7,12 +7,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            Data Karyawan
+                            Data Pegawai
                         </div>
                         <div class="float-end">
                             <a href="{{ route('karyawan.create') }}" class="btn btn-primary btn-sm"><i class="align-middle"
                                     data-feather="plus-circle"></i>
-                                Tambah Data Karyawan</a>
+                                Tambah Data Pegawai</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -21,7 +21,7 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px;">No</th>
-                                        <th>NIK</th>
+                                        <th>NIP</th>
                                         <th>Nama</th>
                                         <th>Telp</th>
                                         <th>Jabatan</th>
@@ -36,7 +36,7 @@
                                             <td>{{ $karyawan->nama }}</td>
                                             <td>{{ $karyawan->telp }}</td>
                                             <td>{{ $karyawan->jabatan }}</td>
-                                            <td>
+                                            <td style="width: 110px;">
                                                 <form action="{{ route('karyawan.destroy', $karyawan->id) }}" method="post"
                                                     style="display: inline;">
                                                     <a href="{{ route('karyawan.show', $karyawan->id) }}"

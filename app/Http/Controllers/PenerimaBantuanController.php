@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DokumentasiPenerimaanBantuan;
 use App\Models\Karyawan;
 use App\Models\PenerimaBantuan;
 use App\Models\Peserta;
@@ -40,11 +41,7 @@ class PenerimaBantuanController extends Controller
             'tgl_pemberian' =>  'required',
             'karyawan_id'   =>  'required',
             'nominal_bantuan'   =>  'required',
-            'foto_dokumentasi'  =>  'image|mimes:jpeg,jpg,png',
         ]);
-
-        //upload foto dokumentasi
-        $request->file('foto_dokumentasi')->store('dokumentasi/peneriam_bantuan/');
 
         PenerimaBantuan::create([
             'peserta_id'   =>  $request->peserta_id,
@@ -54,7 +51,6 @@ class PenerimaBantuanController extends Controller
             'tgl_pemberian'   =>  date('Y-m-d', strtotime($request->tgl_pemberian)),
             'karyawan_id'   =>  $request->karyawan_id,
             'nominal_bantuan'   =>  $request->nominal_bantuan,
-            'foto_dokumentasi'   =>  $request->foto_dokumentasi->hashName(),
         ]);
 
         return redirect(route('data-bantuan', $request->peserta_id))->with('success', 'Data Bantuan Berhasil Disimpan.');
@@ -90,33 +86,17 @@ class PenerimaBantuanController extends Controller
             'tgl_pemberian' =>  'required',
             'karyawan_id'   =>  'required',
             'nominal_bantuan'   =>  'required',
-            'foto_dokumentasi'  =>  'image|mimes:jpeg,jpg,png',
         ]);
 
-        if ($request->hasFile('foto_dokumentasi')) {
-            Storage::delete('dokumentasi/peneriam_bantuan/' . $data->foto_dokumentasi);
-            $request->file('foto_dokumentasi')->store('dokumentasi/peneriam_bantuan/');
-            $data->update([
-                'peserta_id'   =>  $request->peserta_id,
-                'bantuan'   =>  $request->bantuan,
-                'sub_bantuan'   =>  $request->sub_bantuan,
-                'keterangan'   =>  $request->keterangan,
-                'tgl_pemberian'   =>  date('Y-m-d', strtotime($request->tgl_pemberian)),
-                'karyawan_id'   =>  $request->karyawan_id,
-                'nominal_bantuan'   =>  $request->nominal_bantuan,
-                'foto_dokumentasi'   =>  $request->foto_dokumentasi->hashName(),
-            ]);
-        } else {
-            $data->update([
-                'peserta_id'   =>  $request->peserta_id,
-                'bantuan'   =>  $request->bantuan,
-                'sub_bantuan'   =>  $request->sub_bantuan,
-                'keterangan'   =>  $request->keterangan,
-                'tgl_pemberian'   =>  date('Y-m-d', strtotime($request->tgl_pemberian)),
-                'karyawan_id'   =>  $request->karyawan_id,
-                'nominal_bantuan'   =>  $request->nominal_bantuan,
-            ]);
-        }
+        $data->update([
+            'peserta_id'   =>  $request->peserta_id,
+            'bantuan'   =>  $request->bantuan,
+            'sub_bantuan'   =>  $request->sub_bantuan,
+            'keterangan'   =>  $request->keterangan,
+            'tgl_pemberian'   =>  date('Y-m-d', strtotime($request->tgl_pemberian)),
+            'karyawan_id'   =>  $request->karyawan_id,
+            'nominal_bantuan'   =>  $request->nominal_bantuan,
+        ]);
 
         return redirect(route('data-bantuan', $request->peserta_id))->with('success', 'Data Bantuan Berhasil Diupdate.');
     }
@@ -124,8 +104,60 @@ class PenerimaBantuanController extends Controller
     public function destroy(String $id)
     {
         $data = PenerimaBantuan::where('id', $id)->firstOrFail();
-        Storage::delete('dokumentasi/peneriam_bantuan/' . $data->foto_dokumentasi);
         $data->delete();
         return redirect(route('data-bantuan', $data->peserta_id))->with('success', 'Data Bantuan Berhasil Dihapus.');
+    }
+
+    public function dokumentasiDataBantuan(String $id)
+    {
+        $data = PenerimaBantuan::where('id', $id)->firstOrFail();
+        return view('data-bantuan.dokumentasi', [
+            'title' => 'Data Dokumentasi Penerimaan Bantuan',
+            'data' => $data,
+            'peserta' => Peserta::all(),
+            'documentations' => DokumentasiPenerimaanBantuan::where('penerima_bantuan_id', $data->id)->get()
+        ]);
+    }
+
+    public function storeDokumentasiBantuan(Request $request)
+    {
+        $request->validate([
+            'foto_dokumentasi' => 'required',
+            'foto_dokumentasi.*' => 'required|image|mimes:jpeg,jpg,png',
+        ]);
+
+        $files = [];
+        if ($request->file('foto_dokumentasi')) {
+            foreach ($request->file('foto_dokumentasi') as $key => $file) {
+                $file_name = time() . rand(1, 99) . '.' . $file->extension();
+                $file->storeAs('dokumentasi/penerima_bantuan/', $file_name);
+                $files[]['name'] = $file_name;
+            }
+        }
+
+        foreach ($files as $key => $file) {
+            DokumentasiPenerimaanBantuan::create([
+                'penerima_bantuan_id' => $request->penerima_bantuan_id,
+                'foto_dokumentasi'  => $file['name']
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Data Dokumentasi Penerimaan Bantuan Berhasil Disimpan.');
+    }
+
+    public function destoryDokumentasiBantuan(String $id)
+    {
+        $data = DokumentasiPenerimaanBantuan::where('id', $id)->firstOrFail();
+        Storage::delete('dokumentasi/penerima_bantuan/' . $data->foto_dokumentasi);
+        $data->delete();
+        return redirect()->back()->with('success', 'Foto Dokumentasi Berhasil Dihapus.');
+    }
+
+    public function semuaDataBantuan()
+    {
+        return view('data-bantuan.data-bantuan', [
+            'title' => 'Data Peserta Penerima Bantuan',
+            'datas' =>  PenerimaBantuan::orderBy('id', 'DESC')->paginate(20)
+        ]);
     }
 }

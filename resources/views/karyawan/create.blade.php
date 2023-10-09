@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-start">
-                            Tambah Data Karyawan
+                            Tambah Data Pegawai
                         </div>
                         <div class="float-end">
                             <a href="{{ route('karyawan.index') }}" class="btn btn-primary btn-sm"><i class="align-middle"

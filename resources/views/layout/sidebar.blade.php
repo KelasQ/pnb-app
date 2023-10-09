@@ -23,7 +23,7 @@
                     </ul>
                 </li>
             @endif
-            <li class="sidebar-item{{ Request::is('registrasi', 'tindakan') ? ' active' : '' }}">
+            <li class="sidebar-item{{ Request::is('semua-data-bantuan', 'registrasi', 'tindakan') ? ' active' : '' }}">
                 <a data-bs-target="#masterDataPenerimaBantuan" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="check-square"></i> <span
                         class="align-middle">Registrasi</span>
@@ -31,8 +31,13 @@
                 <ul id="masterDataPenerimaBantuan" class="sidebar-dropdown list-unstyled collapse "
                     data-bs-parent="#sidebar">
                     @if (Str::lower(Auth::user()->role->role) === 'pokja 1')
-                        <li class="sidebar-item{{ Request::is('registrasi') ? ' active' : '' }}"><a class="sidebar-link"
-                                href="{{ route('registrasi.index') }}">Penerima Bantuan</a>
+                        <li class="sidebar-item{{ Request::is('semua-data-bantuan') ? ' active' : '' }}"><a
+                                class="sidebar-link" href="{{ route('semua-data-bantuan') }}">Semua
+                                Data
+                                Bantuan</a>
+                        </li>
+                        <li class="sidebar-item{{ Request::is('registrasi') ? ' active' : '' }}"><a
+                                class="sidebar-link" href="{{ route('registrasi.index') }}">Penerima Bantuan</a>
                         </li>
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'pokja 2')
@@ -51,7 +56,7 @@
                 <ul id="masterDataTindakan" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                     @if (Str::lower(Auth::user()->role->role) === 'pokja 3')
                         <li class="sidebar-item{{ Request::is('karyawan') ? ' active' : '' }}"><a class="sidebar-link"
-                                href="{{ route('karyawan.index') }}">Data Karyawan</a></li>
+                                href="{{ route('karyawan.index') }}">Data Pegawai</a></li>
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'admin')
                         <li class="sidebar-item{{ Request::is('klaster') ? ' active' : '' }}"><a class="sidebar-link"
