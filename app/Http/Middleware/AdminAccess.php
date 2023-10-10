@@ -17,9 +17,13 @@ class AdminAccess
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
-        if (Auth::user()->role->role == $role) {
+        // if (Auth::user()->role->role == $role) {
+        //     return $next($request);
+        // }
+        if (in_array(Auth::user()->role->role, explode('|', $role))) {
             return $next($request);
         }
+
         return redirect('/');
     }
 }

@@ -94,13 +94,15 @@
                         <li class="sidebar-item"><a class="sidebar-link" href="{{ url('/') }}">Lap. Asesment</a>
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'admin' || Str::lower(Auth::user()->role->role) === 'pokja 2')
-                        <li class="sidebar-item"><a class="sidebar-link" href="{{ url('/') }}">Lap.
+                        <li class="sidebar-item"><a class="sidebar-link" href="{{ url('lap-residensial') }}">Lap.
                                 Residensial</a>
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'admin' ||
                             Str::lower(Auth::user()->role->role) === 'pokja 1' ||
                             Str::lower(Auth::user()->role->role) === 'pokja 2')
-                        <li class="sidebar-item"><a class="sidebar-link" href="{{ url('/') }}">Lap. Terminasi</a>
+                        <li class="sidebar-item"><a class="sidebar-link" href="{{ route('lap-terminasi') }}">Download
+                                Dok.
+                                Terminasi</a>
                         </li>
                     @endif
             </li>

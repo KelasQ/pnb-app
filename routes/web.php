@@ -5,6 +5,8 @@ use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KlasterController;
+use App\Http\Controllers\LaporanResidensial;
+use App\Http\Controllers\LaporanTerminasi;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PenerimaBantuanController;
 use App\Http\Controllers\RegistrasiController;
@@ -68,6 +70,13 @@ Route::middleware('auth')->group(function () {
     Route::post('getDataKabupaten', [RegistrasiController::class, 'getDataKabupaten']);
     Route::post('getDataKecamatan', [RegistrasiController::class, 'getDataKecamatan']);
     Route::post('getDataKelurahan', [RegistrasiController::class, 'getDataKelurahan']);
+
+    // Laporan
+    Route::get('lap-residensial', [LaporanResidensial::class, 'index'])->middleware('access:Pokja 2|Admin');
+    Route::post('lap-residensial', [LaporanResidensial::class, 'getDataLaporan'])->middleware('access:Pokja 2|Admin');
+
+    Route::get('lap-terminasi', [LaporanTerminasi::class, 'index'])->name('lap-terminasi')->middleware('access:Pokja 1|Pokja 2|Admin');
+    Route::get('dokumen-terminasi/{id}', [LaporanTerminasi::class, 'dokumenTerminasi'])->name('dokumen-terminasi')->middleware('access:Pokja 1|Pokja 2|Admin');
 
     Route::get('logout', [AuthController::class, 'logout']);
 });
