@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <div class="row" style="margin-top: -30px;">
                             <div class="col-md-6 offset-md-3">
-                                <form action="{{ url('lap-residensial') }}" method="post">
+                                <form action="{{ route('get-lap-residensial') }}" method="post">
                                     @method('POST')
                                     @csrf
                                     <div class="input-group mb-3">
@@ -30,11 +30,34 @@
                         @if ($data)
                             <div class="row">
                                 <hr>
-                                @foreach ($data as $key => $value)
-                                    {{-- @foreach ($value as $row) --}}
-                                    {{ dd($value['items']) }}
-                                    {{-- @endforeach --}}
-                                @endforeach
+                                <p style="margin-bottom: -30px;">Jenis Tindakan : <strong>{{ $tindakan }}</strong></p>
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-stripped dataTable">
+                                            <thead>
+                                                <th>No</th>
+                                                <th>Tgl Pemberian</th>
+                                                <th>Nama Peserta</th>
+                                                <th>Action</th>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data as $row)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ date('d F Y H:i', strtotime($row->created_at)) }}</td>
+                                                        <td>{{ $row->peserta->nama_ppks }}</td>
+                                                        <td>
+                                                            <a href="{{ route('dokumen-residensial', [$row->peserta_id, str_replace('/', '&', $row->tindakan)]) }}"
+                                                                target="_blank" class="btn btn-success btn-sm">
+                                                                <i class="align-middle" data-feather="printer"></i> Cetak
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         @endif
                     </div>

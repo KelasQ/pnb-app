@@ -97,8 +97,8 @@
                                     <div class="row mt-2">
                                         <div class="col-md-6">
                                             <label for="tgl_pemberian">Tanggal Pemberian</label>
-                                            <input type="text" name="tgl_pemberian" id="tgl_pemberian"
-                                                class="form-control datePicker @error('tgl_pemberian') is-invalid @enderror"
+                                            <input type="datetime-local" name="tgl_pemberian" id="tgl_pemberian"
+                                                class="form-control @error('tgl_pemberian') is-invalid @enderror"
                                                 value="{{ old('tgl_pemberian', $data->tgl_pemberian) }}"
                                                 placeholder="Tanggal Pemberian">
                                             @error('tgl_pemberian')
@@ -155,7 +155,7 @@
 @endsection
 @push('script')
     <script>
-        $('.datePicker').datepicker();
+        // $('.datePicker').datepicker();
 
         $('.select2').select2({
             // theme: "bootstrap-5",

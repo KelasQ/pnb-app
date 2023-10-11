@@ -30,4 +30,9 @@ class Tindakan extends Model
     {
         return $this->belongsTo(Peserta::class);
     }
+
+    public function penerima_bantuan()
+    {
+        return $this->belongsTo(PenerimaBantuan::class);
+    }
 }

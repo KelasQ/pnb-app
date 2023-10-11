@@ -48,7 +48,7 @@ class PenerimaBantuanController extends Controller
             'bantuan'   =>  $request->bantuan,
             'sub_bantuan'   =>  $request->sub_bantuan,
             'keterangan'   =>  $request->keterangan,
-            'tgl_pemberian'   =>  date('Y-m-d', strtotime($request->tgl_pemberian)),
+            'tgl_pemberian'   =>  date('Y-m-d H:i:s', strtotime($request->tgl_pemberian)),
             'karyawan_id'   =>  $request->karyawan_id,
             'nominal_bantuan'   =>  $request->nominal_bantuan,
         ]);
@@ -93,7 +93,7 @@ class PenerimaBantuanController extends Controller
             'bantuan'   =>  $request->bantuan,
             'sub_bantuan'   =>  $request->sub_bantuan,
             'keterangan'   =>  $request->keterangan,
-            'tgl_pemberian'   =>  date('Y-m-d', strtotime($request->tgl_pemberian)),
+            'tgl_pemberian'   =>  date('Y-m-d H:i:s', strtotime($request->tgl_pemberian)),
             'karyawan_id'   =>  $request->karyawan_id,
             'nominal_bantuan'   =>  $request->nominal_bantuan,
         ]);

@@ -22,15 +22,6 @@ class LaporanTerminasi extends Controller
         $usia = date('Y') - date('Y', strtotime($data->peserta->tgl_lahir));
         $sk = explode(',', $data->syarat_dan_ketentuan);
 
-        // return view('laporan.dokumen-terminasi', [
-        //     'title' => 'Dokumen Terminasi',
-        //     'data'  =>  $data,
-        // ]);
-
-        // $pdf = Pdf::loadView('laporan.dokumen-terminasi', ['data' => $data]);
-        // return $pdf->download('form-terminasi.pdf');
-        // return $pdf->stream();
-
         $html = response()->view('laporan.dokumen-terminasi', ['data' => $data, 'usia' => $usia, 'sk' => $sk])->getContent();
         $pdf = Pdf::loadHTML($html);
         return $pdf->download('form-terminasi.pdf');

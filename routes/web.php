@@ -71,10 +71,12 @@ Route::middleware('auth')->group(function () {
     Route::post('getDataKecamatan', [RegistrasiController::class, 'getDataKecamatan']);
     Route::post('getDataKelurahan', [RegistrasiController::class, 'getDataKelurahan']);
 
-    // Laporan
-    Route::get('lap-residensial', [LaporanResidensial::class, 'index'])->middleware('access:Pokja 2|Admin');
-    Route::post('lap-residensial', [LaporanResidensial::class, 'getDataLaporan'])->middleware('access:Pokja 2|Admin');
+    // Laporan Residensial
+    Route::get('lap-residensial', [LaporanResidensial::class, 'index'])->name('lap-residensial')->middleware('access:Pokja 2|Admin');
+    Route::post('get-lap-residensial', [LaporanResidensial::class, 'getDataLaporan'])->name('get-lap-residensial')->middleware('access:Pokja 2|Admin');
+    Route::get('dokumen-residensial/{peserta_id}/{tindakan}', [LaporanResidensial::class, 'dokumenResidensial'])->name('dokumen-residensial')->middleware('access:Pokja 2|Admin');
 
+    // Laporan Terminasi
     Route::get('lap-terminasi', [LaporanTerminasi::class, 'index'])->name('lap-terminasi')->middleware('access:Pokja 1|Pokja 2|Admin');
     Route::get('dokumen-terminasi/{id}', [LaporanTerminasi::class, 'dokumenTerminasi'])->name('dokumen-terminasi')->middleware('access:Pokja 1|Pokja 2|Admin');
 
