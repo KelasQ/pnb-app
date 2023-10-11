@@ -84,23 +84,27 @@
                     @endif
                 </ul>
             </li>
-            <li class="sidebar-item">
+            <li
+                class="sidebar-item{{ Request::is('lap-asesmen', 'lap-residensial', 'lap-terminasi') ? ' active' : '' }}">
                 <a data-bs-target="#masterDataLaporan" data-bs-toggle="collapse" class="sidebar-link collapsed">
                     <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Data
                         Laporan</span>
                 </a>
                 <ul id="masterDataLaporan" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                     @if (Str::lower(Auth::user()->role->role) === 'admin' || Str::lower(Auth::user()->role->role) === 'pokja 1')
-                        <li class="sidebar-item"><a class="sidebar-link" href="{{ url('/') }}">Lap. Asesment</a>
+                        <li class="sidebar-item{{ Request::is('lap-asesmen') ? ' active' : '' }}"><a
+                                class="sidebar-link" href="{{ route('lap-asesmen') }}">Lap. Asesment</a>
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'admin' || Str::lower(Auth::user()->role->role) === 'pokja 2')
-                        <li class="sidebar-item"><a class="sidebar-link" href="{{ route('lap-residensial') }}">Lap.
+                        <li class="sidebar-item{{ Request::is('lap-residensial') ? ' active' : '' }}"><a
+                                class="sidebar-link" href="{{ route('lap-residensial') }}">Lap.
                                 Residensial</a>
                     @endif
                     @if (Str::lower(Auth::user()->role->role) === 'admin' ||
                             Str::lower(Auth::user()->role->role) === 'pokja 1' ||
                             Str::lower(Auth::user()->role->role) === 'pokja 2')
-                        <li class="sidebar-item"><a class="sidebar-link" href="{{ route('lap-terminasi') }}">Download
+                        <li class="sidebar-item{{ Request::is('lap-terminasi') ? ' active' : '' }}"><a
+                                class="sidebar-link" href="{{ route('lap-terminasi') }}">Download
                                 Dok.
                                 Terminasi</a>
                         </li>

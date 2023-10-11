@@ -5,6 +5,7 @@ use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KlasterController;
+use App\Http\Controllers\LaporanAsesmen;
 use App\Http\Controllers\LaporanResidensial;
 use App\Http\Controllers\LaporanTerminasi;
 use App\Http\Controllers\LayananController;
@@ -70,6 +71,13 @@ Route::middleware('auth')->group(function () {
     Route::post('getDataKabupaten', [RegistrasiController::class, 'getDataKabupaten']);
     Route::post('getDataKecamatan', [RegistrasiController::class, 'getDataKecamatan']);
     Route::post('getDataKelurahan', [RegistrasiController::class, 'getDataKelurahan']);
+
+    // Laporan Asesmen
+    Route::get('lap-asesmen', [LaporanAsesmen::class, 'index'])->name('lap-asesmen')->middleware('access:Pokja 1|Admin');
+    Route::post('lap-asesmen-by-kota', [LaporanAsesmen::class, 'lapAsesmenByKota'])->name('lap-asesmen-by-kota')->middleware('access:Pokja 1|Admin');
+    Route::post('lap-asesmen-by-kasus', [LaporanAsesmen::class, 'lapAsesmenByKasus'])->name('lap-asesmen-by-kasus')->middleware('access:Pokja 1|Admin');
+    Route::post('lap-asesmen-by-klaster', [LaporanAsesmen::class, 'lapAsesmenByKlaster'])->name('lap-asesmen-by-klaster')->middleware('access:Pokja 1|Admin');
+    Route::post('lap-asesmen-by-alat-bantu', [LaporanAsesmen::class, 'lapAsesmenByAlatBantu'])->name('lap-asesmen-by-alat-bantu')->middleware('access:Pokja 1|Admin');
 
     // Laporan Residensial
     Route::get('lap-residensial', [LaporanResidensial::class, 'index'])->name('lap-residensial')->middleware('access:Pokja 2|Admin');
