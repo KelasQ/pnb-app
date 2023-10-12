@@ -17,6 +17,17 @@ use App\Http\Controllers\SubBantuanController;
 use App\Http\Controllers\SubKlasterController;
 use App\Http\Controllers\TindakanController;
 use App\Http\Controllers\UserController;
+use App\Models\Bantuan;
+use App\Models\Karyawan;
+use App\Models\Kasus;
+use App\Models\Klaster;
+use App\Models\Layanan;
+use App\Models\Peserta;
+use App\Models\Role;
+use App\Models\SKA;
+use App\Models\SubKlaster;
+use App\Models\Tindakan;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -25,7 +36,19 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', fn () => view('dashboard'));
+    Route::get('/', fn () => view('dashboard', [
+        'users' => User::count(),
+        'roles' => Role::count(),
+        'peserta' => Peserta::count(),
+        'program' => Tindakan::count(),
+        'karyawan' => Karyawan::count(),
+        'klaster' => Klaster::count(),
+        'subklaster' => SubKlaster::count(),
+        'kasus' => Kasus::count(),
+        'bantuan' => Bantuan::count(),
+        'layanan' => Layanan::count(),
+        'ska' => SKA::count(),
+    ]));
 
     Route::resource('role', RoleController::class)->middleware('access:Admin');
     Route::resource('user', UserController::class)->middleware('access:Admin');
